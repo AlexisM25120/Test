@@ -144,7 +144,7 @@
 
   // Rail scrollspy
   var railLinks = document.querySelectorAll('.rail-link');
-  var sections = document.querySelectorAll('#top, #biens, #agence, #avis, #contact');
+  var sections = document.querySelectorAll('#top, #biens, #agence, #prospection, #avis, #contact');
   if('IntersectionObserver' in window && railLinks.length){
     var spy = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
