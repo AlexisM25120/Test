@@ -17,7 +17,7 @@ alexo/
 ## À faire avant mise en ligne
 
 - Remplacer la police "Space Grotesk" (placeholder) par la police du logo dans `assets/css/style.css` (`--font-display`).
-- Brancher le formulaire de maquette gratuite (`assets/js/main.js`) sur un service d'envoi réel (Formspree, Netlify Forms...) — actuellement il ne fait qu'afficher un message de confirmation côté client.
+- Le formulaire de maquette gratuite envoie déjà les leads via [FormSubmit](https://formsubmit.co) vers `alexo.webdesign@gmail.com` (`assets/js/main.js`, `LEAD_ENDPOINT`). **Au tout premier envoi réel**, FormSubmit demande une confirmation par e-mail à cette adresse — il faut cliquer sur le lien reçu pour activer la réception des leads suivants.
 - Mettre à jour l'e-mail de contact dans le footer si besoin.
 
 ## Prévisualiser en local
