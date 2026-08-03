@@ -41,22 +41,24 @@ window.addEventListener('scroll', updateProgress, { passive: true });
 updateProgress();
 
 // Compteur du prix, déclenché quand la carte entre à l'écran
-const priceNum = document.getElementById('priceNum');
-const priceObserver = new IntersectionObserver(
+const countObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      priceObserver.unobserve(entry.target);
-      const target = Number(entry.target.dataset.value);
+      countObserver.unobserve(entry.target);
+      const el = entry.target;
+      const target = Number(el.dataset.value);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '&nbsp;€';
+      const render = (n) => { el.innerHTML = `${prefix}${n}${suffix}`; };
       if (reducedMotion) {
-        entry.target.textContent = `${target} €`;
+        render(target);
         return;
       }
       const start = performance.now();
       const tick = (now) => {
         const t = Math.min((now - start) / 1100, 1);
-        const eased = 1 - Math.pow(1 - t, 3);
-        entry.target.textContent = `${Math.round(target * eased)} €`;
+        render(Math.round(target * (1 - Math.pow(1 - t, 3))));
         if (t < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
@@ -64,7 +66,7 @@ const priceObserver = new IntersectionObserver(
   },
   { threshold: 0.6 }
 );
-priceObserver.observe(priceNum);
+document.querySelectorAll('[data-value]').forEach((el) => countObserver.observe(el));
 
 if (!reducedMotion) {
   // Grille de points du hero : les points se soulèvent autour du curseur
@@ -145,18 +147,46 @@ if (!reducedMotion) {
     });
   });
 
-  // Le cadre du logo s'incline selon la position du curseur
+  // La fenêtre du hero s'incline selon la position du curseur
   const heroMark = document.getElementById('heroMark');
-  const markFrame = heroMark.querySelector('.mark-frame');
+  const browser = heroMark.querySelector('.browser');
   heroMark.addEventListener('pointermove', (event) => {
     const rect = heroMark.getBoundingClientRect();
-    const rx = ((event.clientY - rect.top) / rect.height - 0.5) * -14;
-    const ry = ((event.clientX - rect.left) / rect.width - 0.5) * 14;
-    markFrame.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    const rx = ((event.clientY - rect.top) / rect.height - 0.5) * -12;
+    const ry = ((event.clientX - rect.left) / rect.width - 0.5) * 12;
+    browser.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
   });
   heroMark.addEventListener('pointerleave', () => {
-    markFrame.style.transform = 'rotateX(0) rotateY(0)';
+    browser.style.transform = 'rotateX(0) rotateY(0)';
   });
+
+  // Galerie de réalisations : défilement horizontal au glisser
+  const rail = document.getElementById('workRail');
+  if (rail) {
+    let dragging = false;
+    let startX = 0;
+    let startScroll = 0;
+    rail.addEventListener('pointerdown', (event) => {
+      dragging = true;
+      startX = event.clientX;
+      startScroll = rail.scrollLeft;
+      rail.classList.add('dragging');
+      rail.setPointerCapture(event.pointerId);
+    });
+    rail.addEventListener('pointermove', (event) => {
+      if (!dragging) return;
+      rail.scrollLeft = startScroll - (event.clientX - startX) * 1.4;
+    });
+    const stop = () => { dragging = false; rail.classList.remove('dragging'); };
+    rail.addEventListener('pointerup', stop);
+    rail.addEventListener('pointercancel', stop);
+    // La molette verticale fait défiler la galerie horizontalement
+    rail.addEventListener('wheel', (event) => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      event.preventDefault();
+      rail.scrollLeft += event.deltaY;
+    }, { passive: false });
+  }
 }
 
 // Formulaire "maquette gratuite"
