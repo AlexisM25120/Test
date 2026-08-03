@@ -12,6 +12,9 @@
 </head>
 <body>
 
+<div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
 <header class="topbar">
   <div class="container topbar-row">
     <a class="brand" href="#top">alexo</a>
@@ -37,17 +40,18 @@
 <main>
 
   <section class="hero" id="top">
+    <canvas id="heroGrid" class="hero-grid-canvas" aria-hidden="true"></canvas>
     <div class="container hero-grid">
-      <div class="hero-copy reveal">
+      <div class="hero-copy" id="heroCopy">
         <p class="eyebrow">Studio web — indépendant</p>
-        <h1>Un site simple,<br />qui travaille <em>pour vous.</em></h1>
+        <h1><span class="line-mask"><span class="line-inner">Un site simple,</span></span><span class="line-mask"><span class="line-inner">qui travaille <em>pour vous.</em></span></span></h1>
         <p class="hero-sub">Je conçois des sites vitrines sobres et efficaces pour les indépendants et petites entreprises — fait main, sans template recyclé, sans surprise sur la facture.</p>
         <div class="hero-cta">
-          <a class="btn btn-solid" href="#maquette">Recevoir ma maquette gratuite</a>
-          <a class="btn btn-ghost" href="#tarif">Voir le tarif — 997€</a>
+          <a class="btn btn-solid magnetic" href="#maquette">Recevoir ma maquette gratuite</a>
+          <a class="btn btn-ghost magnetic" href="#tarif">Voir le tarif — 997€</a>
         </div>
       </div>
-      <div class="hero-mark reveal" aria-hidden="true">
+      <div class="hero-mark" id="heroMark" aria-hidden="true">
         <div class="mark-frame">
           <span class="mark-word">alexo</span>
           <span class="mark-tag">studio web</span>
@@ -55,6 +59,13 @@
       </div>
     </div>
   </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Sites sur-mesure</span><span>—</span><span>SEO inclus</span><span>—</span><span>Livraison en 2 semaines</span><span>—</span><span>Maquette gratuite</span><span>—</span>
+      <span>Sites sur-mesure</span><span>—</span><span>SEO inclus</span><span>—</span><span>Livraison en 2 semaines</span><span>—</span><span>Maquette gratuite</span><span>—</span>
+    </div>
+  </div>
 
   <section class="section-pad" id="approche">
     <div class="container">
@@ -64,22 +75,18 @@
       </div>
       <div class="value-grid">
         <div class="value-card reveal">
-          <span class="value-num">01</span>
           <h3>Fait main, pas un template</h3>
           <p>Chaque site est conçu et codé sur-mesure pour votre activité — pas un thème WordPress recyclé habillé de vos couleurs.</p>
         </div>
         <div class="value-card reveal">
-          <span class="value-num">02</span>
           <h3>Un interlocuteur, pas une agence</h3>
           <p>Vous parlez directement à la personne qui dessine et développe votre site, du premier brief jusqu'à la mise en ligne.</p>
         </div>
         <div class="value-card reveal">
-          <span class="value-num">03</span>
           <h3>Prix fixe, annoncé d'avance</h3>
           <p>997€ tout compris. Pas d'abonnement caché, pas de ligne surprise en fin de projet.</p>
         </div>
         <div class="value-card reveal">
-          <span class="value-num">04</span>
           <h3>Rapide et léger</h3>
           <p>Des sites optimisés qui se chargent vite, s'affichent bien sur mobile et se classent correctement sur Google.</p>
         </div>
@@ -111,7 +118,7 @@
       <div class="price-card reveal">
         <div class="price-top">
           <h3>Site vitrine</h3>
-          <div class="price-amount"><span class="price-num">997&nbsp;€</span><span class="price-note">forfait unique</span></div>
+          <div class="price-amount"><span class="price-num" id="priceNum" data-value="997">0&nbsp;€</span><span class="price-note">forfait unique</span></div>
         </div>
         <ul class="price-list">
           <li>Jusqu'à 5 pages sur-mesure</li>
