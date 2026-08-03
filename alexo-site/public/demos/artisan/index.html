@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<title>Atelier Bois & Fer — Menuiserie sur mesure</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<meta name="description" content="Menuiserie sur mesure — escaliers, dressings, cuisines et agencement. Devis gratuit sous 48h." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --coal:#17150f; --coal-2:#211e16; --cream:#eee7d9; --cream-2:#d9d0bd;
+  --sand:#a1937a; --amber:#c8873a; --amber-dark:#a76f2c;
+  --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--coal);color:var(--cream);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-weight:800;line-height:1.05;margin:0 0 .5em;letter-spacing:-.03em;text-transform:uppercase}
+h1{font-size:clamp(2.2rem,4.4vw,3.5rem)}
+h2{font-size:clamp(1.8rem,3.4vw,2.8rem)}
+h3{font-size:1.02rem;letter-spacing:-.01em}
+p{margin:0 0 1em;color:var(--sand)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 30px}
+.label{font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin:0 0 16px}
+
+.btn{display:inline-flex;align-items:center;gap:9px;padding:16px 30px;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--amber);transition:background .25s,color .25s}
+.btn-fill{background:var(--amber);color:var(--coal)}
+.btn-fill:hover{background:var(--amber-dark);border-color:var(--amber-dark);color:var(--cream)}
+.btn-out{color:var(--amber)}
+.btn-out:hover{background:var(--amber);color:var(--coal)}
+
+header{position:sticky;top:0;z-index:20;background:rgba(23,21,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(238,231,217,.12)}
+.bar{display:flex;align-items:center;gap:30px;padding:18px 30px}
+.logo{font-weight:800;font-size:1.05rem;letter-spacing:.02em;text-transform:uppercase;line-height:1.15}
+.logo em{font-style:normal;color:var(--amber)}
+.logo small{display:block;font-size:.6rem;font-weight:500;letter-spacing:.2em;color:var(--sand)}
+nav{display:flex;gap:28px;margin-left:auto;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sand)}
+nav a:hover{color:var(--cream)}
+.bar .btn{padding:12px 22px;font-size:.72rem}
+@media(max-width:900px){nav{display:none}}
+
+.hero{position:relative;padding:96px 0 84px;overflow:hidden}
+/* Motif de lames de bois en fond, sans photo */
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(238,231,217,.05) 0 2px,transparent 2px 46px);pointer-events:none}
+.hero-in{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:end}
+.hero p.lead{font-size:1.06rem;max-width:42ch}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(238,231,217,.16)}
+.stats div{padding:22px 0}
+.stats b{display:block;font-size:2rem;font-weight:800;letter-spacing:-.03em;color:var(--cream)}
+.stats span{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sand)}
+@media(max-width:900px){.hero-in{grid-template-columns:1fr;gap:40px}}
+
+section{padding:88px 0;border-top:1px solid rgba(238,231,217,.12)}
+.head{max-width:640px;margin-bottom:48px}
+
+/* Galerie de chantiers en aplats de matière */
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.work{background:var(--coal-2);border:1px solid rgba(238,231,217,.12);overflow:hidden;transition:border-color .3s}
+.work:hover{border-color:var(--amber)}
+.work .img{aspect-ratio:4/3;position:relative;overflow:hidden}
+.work .img i{position:absolute;background:var(--sand);opacity:.5}
+.work.a .img{background:linear-gradient(150deg,#4a3d2a,#241f16)}
+.work.b .img{background:linear-gradient(150deg,#3d3527,#1d1a13)}
+.work.c .img{background:linear-gradient(150deg,#54432c,#282116)}
+.work .meta{padding:22px}
+.work .meta h3{margin-bottom:5px}
+.work .meta p{margin:0;font-size:.85rem}
+@media(max-width:900px){.works{grid-template-columns:1fr}}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:40px}}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:56px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid rgba(238,231,217,.12)}
+.steps li::before{content:counter(s,decimal-leading-zero);font-weight:800;font-size:.9rem;color:var(--amber);letter-spacing:.06em}
+.steps h3{margin-bottom:4px}
+.steps p{margin:0;font-size:.9rem}
+
+.zone{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.zone span{font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(238,231,217,.2);padding:8px 15px;color:var(--sand)}
+
+.cta{background:var(--cream);color:var(--coal);text-align:center;border:none}
+.cta h2{color:var(--coal)}
+.cta p{color:#6b6250;max-width:46ch;margin:0 auto 28px}
+.cta .btn-fill{border-color:var(--coal);background:var(--coal);color:var(--cream)}
+.cta .btn-fill:hover{background:var(--amber);border-color:var(--amber);color:var(--coal)}
+
+footer.site{padding:48px 0 26px;border-top:1px solid rgba(238,231,217,.12);font-size:.82rem;color:var(--sand)}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.demo-note{margin-top:26px;padding-top:16px;border-top:1px solid rgba(238,231,217,.12);font-size:.72rem}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">Atelier Bois <em>&amp;</em> Fer<small>Menuiserie sur mesure</small></a>
+    <nav>
+      <a href="#realisations">Réalisations</a>
+      <a href="#methode">Notre méthode</a>
+      <a href="#zone">Zone d'intervention</a>
+    </nav>
+    <a class="btn btn-fill" href="#devis">Demander un devis</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap hero-in">
+    <div>
+      <p class="label">Menuisier — Artisan depuis 2009</p>
+      <h1>Le sur-mesure,<br />sans mauvaise surprise.</h1>
+      <p class="lead">Escaliers, dressings, cuisines et agencement complet. Conçu, fabriqué et posé par le même atelier — vous parlez à celui qui tient la scie.</p>
+      <div class="hero-cta">
+        <a class="btn btn-fill" href="#devis">Demander un devis gratuit</a>
+        <a class="btn btn-out" href="#realisations">Voir nos chantiers</a>
+      </div>
+    </div>
+    <div class="stats">
+      <div><b>17</b><span>ans de métier</span></div>
+      <div><b>340+</b><span>chantiers livrés</span></div>
+      <div><b>48h</b><span>pour le devis</span></div>
+    </div>
+  </div>
+</div>
+
+<section id="realisations">
+  <div class="wrap">
+    <div class="head">
+      <p class="label">Réalisations</p>
+      <h2>Nos derniers chantiers</h2>
+      <p>Chaque projet est dessiné avant d'être fabriqué. Vous validez les plans, on découpe ensuite.</p>
+    </div>
+    <div class="works">
+      <article class="work a"><div class="img"></div><div class="meta"><h3>Escalier chêne massif</h3><p>Limon central acier, marches chêne huilé — maison individuelle.</p></div></article>
+      <article class="work b"><div class="img"></div><div class="meta"><h3>Dressing sous pente</h3><p>Aménagement complet de combles, façades laquées et éclairage intégré.</p></div></article>
+      <article class="work c"><div class="img"></div><div class="meta"><h3>Cuisine sur mesure</h3><p>Îlot central, plan de travail bois massif, rangements toute hauteur.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="methode">
+  <div class="wrap split">
+    <div>
+      <p class="label">Notre méthode</p>
+      <h2>Du premier croquis à la pose</h2>
+      <p>Pas d'intermédiaire, pas de sous-traitance : le devis, la fabrication et la pose sont assurés par l'atelier.</p>
+    </div>
+    <ol class="steps">
+      <li><div><h3>Visite et relevé</h3><p>On vient mesurer sur place et comprendre l'usage réel de l'espace.</p></div></li>
+      <li><div><h3>Plans et devis</h3><p>Un plan coté et un devis détaillé sous 48 heures, sans engagement.</p></div></li>
+      <li><div><h3>Fabrication à l'atelier</h3><p>Tout est usiné dans notre atelier, avec des bois issus de filières françaises.</p></div></li>
+      <li><div><h3>Pose et finitions</h3><p>Installation propre, chantier nettoyé, réglages compris.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="zone">
+  <div class="wrap split">
+    <div>
+      <p class="label">Zone d'intervention</p>
+      <h2>Où nous intervenons</h2>
+      <p>Déplacement et devis gratuits dans un rayon de 40 km autour de l'atelier.</p>
+      <div class="zone">
+        <span>Centre-ville</span><span>Agglomération</span><span>Rayon 40 km</span><span>Chantiers pros</span>
+      </div>
+    </div>
+    <div>
+      <p class="label">Garanties</p>
+      <h2>Ce sur quoi on s'engage</h2>
+      <div class="zone">
+        <span>Assurance décennale</span><span>Devis ferme</span><span>Bois français</span><span>Chantier nettoyé</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="devis">
+  <div class="wrap">
+    <h2>Un projet en tête ?</h2>
+    <p>Décrivez-le en deux lignes, on vous rappelle sous 48 heures avec une première estimation.</p>
+    <a class="btn btn-fill" href="#">Demander un devis gratuit</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <span>© 2026 Atelier Bois &amp; Fer — Menuiserie</span>
+      <span>01 23 45 67 89 — Zone artisanale des Chênes</span>
+    </div>
+    <p class="demo-note">Site de démonstration réalisé par Alexo. Entreprise fictive, contenus d'exemple.</p>
+  </div>
+</footer>
+
+</body>
+</html>

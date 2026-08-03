@@ -174,9 +174,30 @@ if (!reducedMotion) {
     });
   };
 
-  document.querySelectorAll('.value-card').forEach((el) => tilt3d(el, 7));
-  const priceCard = document.querySelector('.price-card');
-  if (priceCard) tilt3d(priceCard, 6, 12);
+  // Le tilt reste réservé aux objets (écrans, fenêtres) : faire pivoter des
+  // blocs de texte nuit à la lecture et fait « gadget ».
+
+  // Parallaxe douce : chaque section légèrement décalée selon sa position
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  if (parallaxEls.length) {
+    let ticking = false;
+    const applyParallax = () => {
+      const vh = window.innerHeight;
+      parallaxEls.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
+        const strength = Number(el.dataset.parallax) || 1;
+        el.style.transform = `translate3d(0, ${-progress * 22 * strength}px, 0)`;
+      });
+      ticking = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(applyParallax);
+    }, { passive: true });
+    applyParallax();
+  }
 
   // Galerie de réalisations : carrousel 3D, glisser + molette
   const rail = document.getElementById('workRail');
