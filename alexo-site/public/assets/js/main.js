@@ -101,7 +101,7 @@ if (!reducedMotion) {
       const dist = Math.hypot(dx, dy);
       const pull = dist < RADIUS ? (1 - dist / RADIUS) : 0;
       const size = 1 + pull * 2.4;
-      ctx.fillStyle = `rgba(17, 17, 18, ${0.12 + pull * 0.55})`;
+      ctx.fillStyle = `rgba(237, 237, 234, ${0.07 + pull * 0.45})`;
       ctx.beginPath();
       ctx.arc(p.x - dx * pull * 0.18, p.y - dy * pull * 0.18, size, 0, Math.PI * 2);
       ctx.fill();
