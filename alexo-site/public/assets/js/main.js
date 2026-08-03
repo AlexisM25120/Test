@@ -160,9 +160,48 @@ if (!reducedMotion) {
     browser.style.transform = 'rotateX(0) rotateY(0)';
   });
 
-  // Galerie de réalisations : défilement horizontal au glisser
+  // Inclinaison 3D d'un élément selon la position du curseur
+  const tilt3d = (el, maxDeg = 10, lift = 0) => {
+    el.addEventListener('pointermove', (event) => {
+      const rect = el.getBoundingClientRect();
+      const rx = ((event.clientY - rect.top) / rect.height - 0.5) * -maxDeg;
+      const ry = ((event.clientX - rect.left) / rect.width - 0.5) * maxDeg;
+      el.style.transform =
+        `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${lift}px)`;
+    });
+    el.addEventListener('pointerleave', () => {
+      el.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    });
+  };
+
+  document.querySelectorAll('.value-card').forEach((el) => tilt3d(el, 7));
+  const priceCard = document.querySelector('.price-card');
+  if (priceCard) tilt3d(priceCard, 6, 12);
+
+  // Galerie de réalisations : carrousel 3D, glisser + molette
   const rail = document.getElementById('workRail');
   if (rail) {
+    const cards = [...rail.querySelectorAll('.work-card')];
+
+    // Chaque carte pivote et recule selon sa distance au centre du rail
+    const project = () => {
+      const railCenter = rail.scrollLeft + rail.clientWidth / 2;
+      cards.forEach((card) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const offset = (cardCenter - railCenter) / rail.clientWidth;
+        const clamped = Math.max(-1, Math.min(1, offset));
+        card.style.setProperty('--rot', `${clamped * -26}deg`);
+        card.style.setProperty('--depth', `${-Math.abs(clamped) * 180}px`);
+      });
+    };
+
+    rail.addEventListener('scroll', project, { passive: true });
+    window.addEventListener('resize', project);
+    project();
+
+    // Les écrans s'inclinent aussi sous le curseur, en plus du carrousel
+    cards.forEach((card) => tilt3d(card.querySelector('.wc-screen'), 12, 30));
+
     let dragging = false;
     let startX = 0;
     let startScroll = 0;
