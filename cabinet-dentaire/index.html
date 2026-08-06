@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Cabinet Aria — Cabinet dentaire à Lyon 6ᵉ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Cabinet dentaire à Lyon 6ᵉ : soins courants, esthétique du sourire, implantologie, orthodontie et urgences sous 24 h. Prise de rendez-vous en ligne." />
+  <meta name="theme-color" content="#0e7c8b" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#soins">Aller au contenu principal</a>
+
+<!-- ══════════════════════════════ EN-TÊTE ══════════════════════════════ -->
+<header class="topbar" id="topbar">
+  <div class="container topbar-inner">
+
+    <a class="brand" href="#accueil" aria-label="Cabinet Aria, retour à l'accueil">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" role="img">
+          <path d="M9 17.5a7 7 0 0 0 14 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="11.5" cy="11" r="1.7" fill="currentColor"/>
+          <circle cx="20.5" cy="11" r="1.7" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <b>Cabinet Aria</b>
+        <em>Chirurgiens-dentistes · Lyon 6ᵉ</em>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="nav-link" href="#soins" data-section="soins">Nos soins</a>
+      <a class="nav-link" href="#parcours" data-section="parcours">Le parcours</a>
+      <a class="nav-link" href="#equipe" data-section="equipe">L'équipe</a>
+      <a class="nav-link" href="#cabinet" data-section="cabinet">Le cabinet</a>
+      <a class="nav-link" href="#tarifs" data-section="tarifs">Tarifs</a>
+      <a class="nav-link" href="#infos" data-section="infos">Infos pratiques</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <a class="phone-link" href="tel:+33478000000">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M5 4h3l1.6 4-2 1.4a12 12 0 0 0 5.9 5.9l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16 16 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>
+        04 78 00 00 00
+      </a>
+      <a class="btn btn-primary btn-sm" href="#rdv">Prendre rendez-vous</a>
+      <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" hidden>
+  <nav aria-label="Navigation mobile">
+    <a href="#soins">Nos soins</a>
+    <a href="#parcours">Le parcours de soin</a>
+    <a href="#equipe">L'équipe</a>
+    <a href="#cabinet">Le cabinet</a>
+    <a href="#tarifs">Tarifs &amp; remboursements</a>
+    <a href="#avis">Avis patients</a>
+    <a href="#faq">Questions fréquentes</a>
+    <a href="#infos">Infos pratiques</a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <a class="btn btn-primary" href="#rdv">Prendre rendez-vous</a>
+    <a class="btn btn-ghost" href="tel:+33478000000">Appeler le cabinet</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════ HÉRO ══════════════════════════════ -->
+<section class="hero" id="accueil">
+  <div class="hero-bg" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <span class="hero-grid-lines"></span>
+  </div>
+
+  <div class="container hero-inner">
+
+    <div class="hero-copy">
+      <p class="pill"><span class="pulse"></span> Nouveaux patients acceptés cette semaine</p>
+      <h1>Des soins dentaires <em>doux</em>, précis, et sans mauvaise surprise.</h1>
+      <p class="lead">
+        Au Cabinet Aria, chaque traitement commence par un bilan complet et un devis écrit.
+        Vous savez ce qui sera fait, pourquoi, combien de temps cela prendra et ce qu'il
+        restera à votre charge — avant que le premier soin ne commence.
+      </p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#rdv">Prendre rendez-vous</a>
+        <a class="btn btn-ghost" href="tel:+33478000000">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M5 4h3l1.6 4-2 1.4a12 12 0 0 0 5.9 5.9l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16 16 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>
+          04 78 00 00 00
+        </a>
+      </div>
+
+      <ul class="hero-trust">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="m5 13 4 4L19 7"/></svg> Conventionné secteur 1</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="m5 13 4 4L19 7"/></svg> Tiers payant Carte Vitale</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="m5 13 4 4L19 7"/></svg> Urgences sous 24&nbsp;h</li>
+      </ul>
+    </div>
+
+    <aside class="booking" aria-labelledby="bookingTitle">
+      <div class="booking-head">
+        <div>
+          <p class="booking-eyebrow"><span class="pulse pulse-green"></span> Agenda en direct</p>
+          <h2 id="bookingTitle">Prochaines disponibilités</h2>
+        </div>
+        <span class="booking-badge">3 créneaux</span>
+      </div>
+
+      <div class="slots" id="slots" role="radiogroup" aria-label="Choisir un créneau">
+        <button class="slot" type="button" role="radio" aria-checked="false"
+                data-day="Aujourd'hui" data-time="17:40" data-prat="Dr Camille Berthier">
+          <span class="slot-when"><b>Aujourd'hui</b><i>17:40</i></span>
+          <span class="slot-who">Dr Camille Berthier</span>
+          <span class="slot-tag tag-urgence">Créneau urgence</span>
+        </button>
+        <button class="slot" type="button" role="radio" aria-checked="false"
+                data-day="Demain" data-time="09:20" data-prat="Dr Yanis Lefranc">
+          <span class="slot-when"><b>Demain</b><i>09:20</i></span>
+          <span class="slot-who">Dr Yanis Lefranc</span>
+          <span class="slot-tag">Bilan complet</span>
+        </button>
+        <button class="slot" type="button" role="radio" aria-checked="false"
+                data-day="Jeudi" data-time="14:00" data-prat="Dr Léa Nguyen">
+          <span class="slot-when"><b>Jeudi</b><i>14:00</i></span>
+          <span class="slot-who">Dr Léa Nguyen</span>
+          <span class="slot-tag">Enfants &amp; ados</span>
+        </button>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="button" id="slotConfirm" disabled>
+        Sélectionnez un créneau
+      </button>
+      <p class="booking-note">Pas le bon horaire ? Le formulaire en bas de page couvre les 4 prochaines semaines.</p>
+    </aside>
+
+  </div>
+
+  <div class="hero-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0 90V38c240 34 480 46 720 34S1200 22 1440 0v90z"/></svg>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ CHIFFRES ══════════════════════════════ -->
+<section class="band" aria-label="Le cabinet en chiffres">
+  <div class="container band-grid">
+    <div class="band-item reveal">
+      <b class="count" data-count="2009" data-format="plain">2009</b>
+      <span>Année d'ouverture, même équipe fondatrice</span>
+    </div>
+    <div class="band-item reveal">
+      <b class="count" data-count="11400">11 400</b>
+      <span>Patients suivis depuis l'ouverture</span>
+    </div>
+    <div class="band-item reveal">
+      <b><span class="count" data-count="24">24</span>&nbsp;h</b>
+      <span>Délai moyen de prise en charge d'une urgence</span>
+    </div>
+    <div class="band-item reveal">
+      <b><span class="count" data-count="49" data-divide="10" data-decimals="1">4,9</span>/5</b>
+      <span>Note moyenne sur 312 avis vérifiés</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SOINS ══════════════════════════════ -->
+<section class="section" id="soins">
+  <div class="container">
+
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Nos soins</p>
+        <h2>Tout ce dont une bouche a besoin, au même endroit</h2>
+      </div>
+      <p>Trois praticiens aux spécialités complémentaires : vous n'êtes réorienté vers un
+         confrère que lorsque c'est réellement dans votre intérêt.</p>
+    </div>
+
+    <div class="care-grid">
+
+      <article class="care-card reveal">
+        <span class="care-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3.2 19 6v5.1c0 4.4-2.9 8.3-7 9.7-4.1-1.4-7-5.3-7-9.7V6l7-2.8z"/><path d="m9.2 12.1 2 2 3.6-3.9"/></svg>
+        </span>
+        <h3>Prévention &amp; soins courants</h3>
+        <p>Contrôle annuel, détartrage, traitement des caries en composite, dévitalisation
+           sous microscope quand la dent peut être conservée.</p>
+        <p class="care-meta">30 à 60 min · Remboursé Sécurité sociale</p>
+      </article>
+
+      <article class="care-card reveal">
+        <span class="care-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9z"/><path d="M18.5 4.2v3M17 5.7h3"/></svg>
+        </span>
+        <h3>Esthétique du sourire</h3>
+        <p>Blanchiment ambulatoire, facettes céramique, remplacement des vieux amalgames
+           gris par des composites teintés à votre émail.</p>
+        <p class="care-meta">Simulation avant traitement · Devis détaillé</p>
+      </article>
+
+      <article class="care-card reveal">
+        <span class="care-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7.6 5.2h8.8a1.6 1.6 0 0 1 1.6 1.6v2.4a1.6 1.6 0 0 1-1.6 1.6H7.6A1.6 1.6 0 0 1 6 9.2V6.8a1.6 1.6 0 0 1 1.6-1.6z"/><path d="M12 10.8v8.6"/><path d="M9.2 12.8h5.6M9.6 15.3h4.8M10.2 17.8h3.6"/></svg>
+        </span>
+        <h3>Implantologie</h3>
+        <p>Remplacement d'une dent absente par une racine en titane et une couronne
+           céramique. Planification sur imagerie 3D, chirurgie guidée.</p>
+        <p class="care-meta">DU d'implantologie · Garantie 5 ans sur l'implant</p>
+      </article>
+
+      <article class="care-card reveal">
+        <span class="care-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3.2 6.6c0 6.2 3.9 11.2 8.8 11.2S20.8 12.8 20.8 6.6"/><path d="M6.9 7.4c0 4.1 2.3 7.4 5.1 7.4s5.1-3.3 5.1-7.4"/><path d="M3.2 6.6h17.6"/></svg>
+        </span>
+        <h3>Orthodontie &amp; aligneurs</h3>
+        <p>Gouttières transparentes pour les adultes, appareils classiques pour les
+           adolescents. Suivi photographique à chaque étape.</p>
+        <p class="care-meta">6 à 24 mois · Prise en charge avant 16 ans</p>
+      </article>
+
+      <article class="care-card reveal">
+        <span class="care-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 20s-6.4-4.1-8.2-7.7A4.7 4.7 0 0 1 12 7.1a4.7 4.7 0 0 1 8.2 5.2C18.4 15.9 12 20 12 20z"/></svg>
+        </span>
+        <h3>Parodontologie</h3>
+        <p>Gencives qui saignent, déchaussement, mobilité dentaire : assainissement
+           complet puis programme de maintenance personnalisé.</p>
+        <p class="care-meta">Bilan parodontal · Suivi tous les 3 à 6 mois</p>
+      </article>
+
+      <article class="care-card reveal">
+        <span class="care-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M13.4 3 4.9 14.2h5.4L9.1 21l8.6-11.3h-5.5z"/></svg>
+        </span>
+        <h3>Enfants &amp; urgences</h3>
+        <p>Première visite dès 3 ans, scellement des sillons, dent cassée ou expulsée,
+           rage de dents : des créneaux sont réservés chaque matin.</p>
+        <p class="care-meta">Urgences sous 24&nbsp;h · Sans rendez-vous à 8h30</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ SCHÉMA DENTAIRE ══════════════════════════════ -->
+<section class="section section-wash" id="schema">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Comprendre sa bouche</p>
+        <h2>Le schéma dentaire, sans jargon</h2>
+      </div>
+      <p>Choisissez une dent pour voir son nom, son numéro international et les soins qui la
+         concernent le plus souvent. C'est exactement le schéma que nous remplissons avec
+         vous lors du bilan.</p>
+    </div>
+
+    <div class="chart reveal">
+      <div class="chart-canvas">
+        <p class="chart-label chart-label-top">Arcade supérieure (maxillaire)</p>
+        <svg id="arch" viewBox="0 0 520 380" role="group" aria-label="Schéma dentaire interactif"></svg>
+        <p class="chart-label chart-label-bottom">Arcade inférieure (mandibule)</p>
+        <p class="chart-swipe">Faites glisser le schéma horizontalement pour l'explorer.</p>
+      </div>
+
+      <div class="chart-panel">
+        <div id="toothInfo" class="tooth-info is-empty">
+          <p class="tooth-hint">Sélectionnez une dent sur le schéma pour afficher sa fiche.</p>
+        </div>
+        <ul class="chart-legend">
+          <li><i class="sw sw-incisive"></i> Incisives — couper</li>
+          <li><i class="sw sw-canine"></i> Canines — déchirer</li>
+          <li><i class="sw sw-premolaire"></i> Prémolaires — écraser</li>
+          <li><i class="sw sw-molaire"></i> Molaires — broyer</li>
+        </ul>
+        <p class="chart-note">Numérotation FDI, la norme utilisée sur votre devis et vos
+           feuilles de soins.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ PARCOURS ══════════════════════════════ -->
+<section class="section" id="parcours">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Le parcours de soin</p>
+        <h2>Quatre étapes, aucune zone d'ombre</h2>
+      </div>
+      <p>Notre engagement : aucun acte n'est engagé sans que vous ayez compris ce qu'il
+         soigne, ce qu'il coûte et ce qui se passe si vous ne le faites pas.</p>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Premier contact</h3>
+        <p>En ligne ou par téléphone. On identifie le motif réel et le degré d'urgence :
+           une douleur ne se met pas dans la même case qu'un contrôle.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-num">02</span>
+        <h3>Bilan complet</h3>
+        <p>45 minutes : examen clinique, radiographies, photographies, schéma dentaire
+           commenté à l'écran avec vous. Facturé au tarif d'une consultation, rien de plus.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-num">03</span>
+        <h3>Plan de traitement chiffré</h3>
+        <p>Un devis écrit, souvent plusieurs options — de la plus économique à la plus
+           durable. Vous repartez avec, vous décidez chez vous.</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-num">04</span>
+        <h3>Soins &amp; suivi</h3>
+        <p>Séances regroupées pour limiter les allers-retours, rappel automatique par SMS,
+           contrôle offert à 6 mois après la fin du traitement.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ ÉQUIPE ══════════════════════════════ -->
+<section class="section section-wash" id="equipe">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">L'équipe</p>
+        <h2>Les personnes que vous verrez vraiment</h2>
+      </div>
+      <p>Pas de rotation de remplaçants : au Cabinet Aria, vous êtes suivi par le même
+         praticien du bilan jusqu'au contrôle final.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <article class="person reveal">
+        <span class="avatar av-1" aria-hidden="true">CB</span>
+        <h3>Dr Camille Berthier</h3>
+        <p class="person-role">Chirurgien-dentiste · Omnipratique et esthétique</p>
+        <p class="person-bio">Diplômée de l'Université Claude-Bernard Lyon 1 en 2011,
+           cofondatrice du cabinet. Travaille beaucoup la dentisterie adhésive : conserver
+           un maximum de dent naturelle plutôt que de couronner.</p>
+        <ul class="person-tags"><li>Dentisterie adhésive</li><li>Facettes</li><li>Blanchiment</li></ul>
+      </article>
+
+      <article class="person reveal">
+        <span class="avatar av-2" aria-hidden="true">YL</span>
+        <h3>Dr Yanis Lefranc</h3>
+        <p class="person-role">Chirurgien-dentiste · Implantologie et chirurgie orale</p>
+        <p class="person-bio">DU d'implantologie orale (Lyon 1), exerce au cabinet depuis
+           2016. Prend en charge les extractions complexes, les greffes osseuses et la
+           pose d'implants sous chirurgie guidée.</p>
+        <ul class="person-tags"><li>Implants</li><li>Chirurgie guidée</li><li>Greffe osseuse</li></ul>
+      </article>
+
+      <article class="person reveal">
+        <span class="avatar av-3" aria-hidden="true">LN</span>
+        <h3>Dr Léa Nguyen</h3>
+        <p class="person-role">Chirurgien-dentiste · Orthodontie et pédodontie</p>
+        <p class="person-bio">Formée à la prise en charge des enfants et des patients
+           anxieux. Suit les traitements par aligneurs de l'adulte et les appareils
+           multi-attaches de l'adolescent.</p>
+        <ul class="person-tags"><li>Aligneurs</li><li>Enfants dès 3 ans</li><li>Patients anxieux</li></ul>
+      </article>
+
+      <article class="person reveal">
+        <span class="avatar av-4" aria-hidden="true">MC</span>
+        <h3>Marion Cros</h3>
+        <p class="person-role">Assistante dentaire qualifiée · Coordination des soins</p>
+        <p class="person-bio">Votre interlocutrice pour les rendez-vous, les devis, les
+           ententes préalables et le suivi des remboursements auprès de votre mutuelle.</p>
+        <ul class="person-tags"><li>Devis &amp; mutuelles</li><li>Stérilisation</li><li>Accueil</li></ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ LE CABINET ══════════════════════════════ -->
+<section class="section" id="cabinet">
+  <div class="container cabinet-grid">
+
+    <div class="reveal">
+      <p class="eyebrow">Le cabinet</p>
+      <h2>Un plateau technique qui évite les allers-retours</h2>
+      <p class="lead lead-sm">Le matériel n'est pas un argument marketing : il détermine le
+         nombre de séances, la précision des prothèses et la dose de rayons que vous
+         recevez. Voici ce dont nous disposons sur place.</p>
+
+      <ul class="kit">
+        <li>
+          <span class="kit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span>
+          <div><b>Imagerie 3D (cone beam)</b><span>Radios panoramiques et volumiques à basse dose, sur place, résultat immédiat.</span></div>
+        </li>
+        <li>
+          <span class="kit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span>
+          <div><b>Empreinte optique 3D</b><span>Une caméra remplace la pâte à empreinte : plus de haut-le-cœur, plus de précision.</span></div>
+        </li>
+        <li>
+          <span class="kit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span>
+          <div><b>CFAO et usineuse céramique</b><span>Une couronne conçue et posée dans la même journée, sans prothèse provisoire.</span></div>
+        </li>
+        <li>
+          <span class="kit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span>
+          <div><b>Stérilisation tracée cycle B</b><span>Chaque instrument est associé à votre dossier : la traçabilité est consultable.</span></div>
+        </li>
+        <li>
+          <span class="kit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span>
+          <div><b>Anesthésie assistée électroniquement</b><span>Injection lente et régulée : la piqûre devient à peine perceptible.</span></div>
+        </li>
+        <li>
+          <span class="kit-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></span>
+          <div><b>MEOPA pour les patients anxieux</b><span>Un gaz relaxant, sans anesthésie générale, adapté aux enfants comme aux adultes.</span></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="rooms reveal" aria-hidden="true">
+      <div class="room room-a">
+        <span class="room-tag">Salle de soins 1</span>
+        <div class="room-art">
+          <span class="unit-light"></span>
+          <span class="unit-chair"></span>
+          <span class="unit-arm"></span>
+          <span class="unit-tray"></span>
+        </div>
+      </div>
+      <div class="room room-b">
+        <span class="room-tag">Bloc de chirurgie</span>
+        <div class="room-art">
+          <span class="unit-light"></span>
+          <span class="unit-chair"></span>
+          <span class="unit-arm"></span>
+          <span class="unit-tray"></span>
+        </div>
+      </div>
+      <div class="room room-c">
+        <span class="room-tag">Imagerie 3D</span>
+        <div class="scan">
+          <span class="scan-ring"></span>
+          <span class="scan-ring r2"></span>
+          <span class="scan-beam"></span>
+        </div>
+      </div>
+      <div class="room room-d">
+        <span class="room-tag">Stérilisation</span>
+        <div class="steri">
+          <span class="steri-body"></span>
+          <span class="steri-door"></span>
+          <span class="steri-led"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════ AVIS ══════════════════════════════ -->
+<section class="section section-wash" id="avis">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Avis patients</p>
+        <h2>4,9/5 sur 312 avis vérifiés</h2>
+      </div>
+      <p>Avis collectés après les soins, publiés sans filtre. Nous répondons à tous,
+         y compris aux moins flatteurs.</p>
+    </div>
+
+    <div class="quotes reveal">
+      <button class="q-nav q-prev" type="button" aria-label="Avis précédent">‹</button>
+
+      <div class="q-viewport">
+        <ul class="q-track" id="qTrack">
+          <li class="quote">
+            <div class="q-card">
+              <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+              <blockquote>« J'ai une phobie du dentiste depuis l'enfance. On m'a expliqué chaque geste avant de le faire, et on s'est arrêté quand je l'ai demandé. Trois séances plus tard, tout est soigné. »</blockquote>
+              <footer><b>Sabrina M.</b> — Patiente depuis 2021</footer>
+            </div>
+          </li>
+          <li class="quote">
+            <div class="q-card">
+              <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+              <blockquote>« Dent cassée un mardi soir, reçu le mercredi matin à 8h30. Couronne posée dans la journée grâce à leur machine sur place. Impeccable. »</blockquote>
+              <footer><b>Thomas R.</b> — Urgence, Lyon 3ᵉ</footer>
+            </div>
+          </li>
+          <li class="quote">
+            <div class="q-card">
+              <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+              <blockquote>« Deux devis, deux options, et surtout le temps de me dire ce qui pouvait attendre. C'est la première fois qu'on ne me pousse pas au traitement le plus cher. »</blockquote>
+              <footer><b>Hélène D.</b> — Patiente depuis 2018</footer>
+            </div>
+          </li>
+          <li class="quote">
+            <div class="q-card">
+              <div class="stars" aria-label="4 étoiles sur 5">★★★★<span class="star-off">★</span></div>
+              <blockquote>« Soins parfaits et équipe très agréable. Un point : il y a eu 25 minutes d'attente sur mon dernier rendez-vous du soir. Rien de dramatique mais autant le dire. »</blockquote>
+              <footer><b>Karim B.</b> — Patient depuis 2023</footer>
+            </div>
+          </li>
+          <li class="quote">
+            <div class="q-card">
+              <div class="stars" aria-label="5 étoiles sur 5">★★★★★</div>
+              <blockquote>« Mes deux enfants y vont sans pleurer, ce qui relève du miracle. Tout est expliqué avec des mots qu'ils comprennent, et on leur montre les instruments avant. »</blockquote>
+              <footer><b>Julie et Paul C.</b> — Famille suivie depuis 2019</footer>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <button class="q-nav q-next" type="button" aria-label="Avis suivant">›</button>
+      <div class="q-dots" id="qDots" role="tablist" aria-label="Choisir un avis"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ TARIFS ══════════════════════════════ -->
+<section class="section" id="tarifs">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Tarifs &amp; remboursements</p>
+        <h2>Les prix, avant le fauteuil</h2>
+      </div>
+      <p>Cabinet conventionné secteur 1 : les soins courants sont au tarif de la Sécurité
+         sociale. Pour tout le reste, un devis écrit vous est remis systématiquement.</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table class="price-table">
+        <caption class="sr-only">Tarifs indicatifs des principaux actes</caption>
+        <thead>
+          <tr>
+            <th scope="col">Acte</th>
+            <th scope="col">Honoraires</th>
+            <th scope="col">Base de remboursement</th>
+            <th scope="col">Reste à charge estimé*</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Consultation et bilan bucco-dentaire</th>
+            <td class="num">30 €</td><td class="num">30 €</td><td class="num ok">0 €</td>
+          </tr>
+          <tr>
+            <th scope="row">Détartrage des deux arcades</th>
+            <td class="num">43 €</td><td class="num">43 €</td><td class="num ok">0 €</td>
+          </tr>
+          <tr>
+            <th scope="row">Soin d'une carie (composite)</th>
+            <td class="num">60 à 110 €</td><td class="num">26 à 68 €</td><td class="num ok">0 à 30 €</td>
+          </tr>
+          <tr>
+            <th scope="row">Couronne céramique — panier 100&nbsp;% Santé</th>
+            <td class="num">500 €</td><td class="num">107,50 €</td><td class="num ok">0 €</td>
+          </tr>
+          <tr>
+            <th scope="row">Implant titane + couronne</th>
+            <td class="num">1 800 €</td><td class="num">Non remboursé</td><td class="num">Selon mutuelle</td>
+          </tr>
+          <tr>
+            <th scope="row">Blanchiment ambulatoire (2 arcades)</th>
+            <td class="num">350 €</td><td class="num">Non remboursé</td><td class="num">350 €</td>
+          </tr>
+          <tr>
+            <th scope="row">Traitement par aligneurs</th>
+            <td class="num">1 900 à 3 500 €</td><td class="num">Selon âge</td><td class="num">Devis détaillé</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="table-foot reveal">*Estimation pour un patient couvert par une complémentaire
+      santé responsable. Tarifs indicatifs : seul le devis écrit remis au cabinet fait foi.</p>
+
+    <div class="pay-grid">
+      <div class="pay-card reveal">
+        <h3>100&nbsp;% Santé</h3>
+        <p>Couronnes, bridges et prothèses amovibles du panier « 100&nbsp;% Santé » sont
+           intégralement pris en charge, sans avance de frais si votre mutuelle est
+           responsable.</p>
+      </div>
+      <div class="pay-card reveal">
+        <h3>Tiers payant</h3>
+        <p>Carte Vitale et mutuelle : nous pratiquons le tiers payant sur la part
+           obligatoire, et sur la part complémentaire pour la plupart des organismes.</p>
+      </div>
+      <div class="pay-card reveal">
+        <h3>Paiement échelonné</h3>
+        <p>Au-delà de 600 €, le règlement peut être réparti en 3 ou 4 fois sans frais,
+           calé sur le rythme des séances.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ FAQ ══════════════════════════════ -->
+<section class="section section-wash" id="faq">
+  <div class="container faq-grid">
+
+    <div class="reveal">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Ce qu'on nous demande le plus souvent</h2>
+      <p class="lead lead-sm">Votre question n'y est pas ? Le secrétariat répond au
+         téléphone du lundi au vendredi, et par e-mail sous 24&nbsp;h ouvrées.</p>
+      <a class="btn btn-ghost" href="#rdv">Poser une question</a>
+    </div>
+
+    <div class="faq reveal">
+      <details>
+        <summary>Comment prendre rendez-vous ?</summary>
+        <p>Trois possibilités : le formulaire en bas de cette page, un appel au
+           04 78 00 00 00, ou directement à l'accueil du cabinet. Pour une première
+           visite, prévoyez 45 minutes afin que le bilan complet puisse être réalisé.</p>
+      </details>
+      <details>
+        <summary>Que faire en cas d'urgence dentaire ?</summary>
+        <p>Appelez le cabinet dès l'ouverture : des créneaux sont réservés chaque matin
+           pour les urgences. En cas de dent expulsée, conservez-la dans du lait ou du
+           sérum physiologique et venez dans l'heure. La nuit et le dimanche, composez
+           le 15 ou contactez la garde dentaire du Rhône.</p>
+      </details>
+      <details>
+        <summary>Acceptez-vous les nouveaux patients ?</summary>
+        <p>Oui. Le délai pour un premier bilan est actuellement d'environ deux semaines,
+           et de 24&nbsp;h pour une douleur.</p>
+      </details>
+      <details>
+        <summary>Les soins sont-ils douloureux ?</summary>
+        <p>L'anesthésie locale est assistée électroniquement, ce qui rend l'injection
+           lente et quasiment indolore. Pour les patients anxieux ou les jeunes enfants,
+           nous proposons le MEOPA, un gaz relaxant qui n'endort pas. Vous pouvez
+           interrompre un soin à tout moment en levant la main.</p>
+      </details>
+      <details>
+        <summary>Le cabinet est-il accessible aux personnes à mobilité réduite ?</summary>
+        <p>Oui : entrée de plain-pied depuis la rue, ascenseur aux normes, sanitaires
+           adaptés et une salle de soins conçue pour le transfert depuis un fauteuil
+           roulant. Signalez-le à la prise de rendez-vous pour que nous réservions
+           cette salle.</p>
+      </details>
+      <details>
+        <summary>Quels moyens de paiement acceptez-vous ?</summary>
+        <p>Carte bancaire, chèque, espèces et virement. Les traitements supérieurs
+           à 600 € peuvent être réglés en 3 ou 4 fois sans frais.</p>
+      </details>
+      <details>
+        <summary>À partir de quel âge amener mon enfant ?</summary>
+        <p>Dès 3 ans, pour une visite « découverte » sans soin : on compte les dents, on
+           montre les instruments, on repart avec un autocollant. L'Assurance maladie
+           prend en charge un examen gratuit à 3, 6, 9, 12, 15, 18, 21 et 24 ans.</p>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════ INFOS PRATIQUES + RDV ══════════════════════════════ -->
+<section class="section" id="infos">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Infos pratiques</p>
+        <h2>Nous trouver, nous joindre</h2>
+      </div>
+      <p>Au cœur du 6ᵉ arrondissement, à trois minutes à pied du métro Foch.</p>
+    </div>
+
+    <div class="infos-grid">
+
+      <div class="map-card reveal">
+        <svg viewBox="0 0 560 760" class="map" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Plan stylisé de l'emplacement du cabinet, 24 rue Vendôme à Lyon 6ᵉ">
+          <rect width="560" height="760" class="m-bg"/>
+          <g class="m-block">
+            <rect x="26"  y="26"  width="142" height="200" rx="7"/>
+            <rect x="212" y="26"  width="144" height="200" rx="7"/>
+            <rect x="402" y="26"  width="132" height="200" rx="7"/>
+            <rect x="26"  y="274" width="142" height="226" rx="7"/>
+            <rect x="212" y="274" width="144" height="226" rx="7"/>
+            <rect x="402" y="274" width="132" height="226" rx="7"/>
+            <rect x="26"  y="556" width="142" height="180" rx="7"/>
+            <rect x="212" y="556" width="144" height="180" rx="7"/>
+            <rect x="402" y="556" width="132" height="180" rx="7"/>
+          </g>
+          <g class="m-park"><rect x="212" y="26" width="144" height="200" rx="7"/></g>
+          <g class="m-road">
+            <path d="M0 250h560"/><path d="M0 528h560"/>
+            <path d="M190 0v760"/><path d="M380 0v760"/>
+          </g>
+          <g class="m-road m-road-main"><path d="M0 250h560"/></g>
+          <g class="m-text">
+            <text x="16" y="242">rue Vendôme</text>
+            <text x="16" y="550">cours Franklin Roosevelt</text>
+            <text x="228" y="60">square</text>
+            <text x="184" y="120" transform="rotate(-90 184 120)">rue Bossuet</text>
+          </g>
+          <g class="m-metro" transform="translate(190 528)">
+            <circle r="14"/><text y="4.8">M</text>
+          </g>
+          <g class="m-pin" transform="translate(272 250)">
+            <circle class="pin-halo" r="34"/>
+            <circle class="pin-halo pin-halo-2" r="34"/>
+            <path class="pin-body" d="M0-32c-10 0-18 8-18 18C-18-3 0 20 0 20s18-23 18-34c0-10-8-18-18-18z"/>
+            <circle class="pin-dot" cy="-14" r="6.5"/>
+          </g>
+        </svg>
+        <div class="map-legend">
+          <span><i class="lg lg-pin"></i> Cabinet Aria — 24 rue Vendôme</span>
+          <span><i class="lg lg-metro"></i> Métro B — Foch, 3 min à pied</span>
+        </div>
+      </div>
+
+      <div class="infos-side">
+        <div class="info-card reveal">
+          <h3>Horaires d'ouverture</h3>
+          <table class="hours">
+            <tbody>
+              <tr><th scope="row">Lundi – jeudi</th><td>8h30 – 19h00</td></tr>
+              <tr><th scope="row">Vendredi</th><td>8h30 – 17h00</td></tr>
+              <tr><th scope="row">Samedi</th><td>9h00 – 13h00 <em>urgences</em></td></tr>
+              <tr class="closed"><th scope="row">Dimanche</th><td>Fermé</td></tr>
+            </tbody>
+          </table>
+          <p class="info-alert">En dehors de ces horaires, composez le <b>15</b> ou
+             contactez la garde dentaire du Rhône.</p>
+        </div>
+
+        <div class="info-card reveal">
+          <h3>Accès &amp; contact</h3>
+          <ul class="info-list">
+            <li><span>Adresse</span>24 rue Vendôme, 69006 Lyon</li>
+            <li><span>Téléphone</span><a href="tel:+33478000000">04 78 00 00 00</a></li>
+            <li><span>E-mail</span><a href="mailto:contact@cabinet-aria.example">contact@cabinet-aria.example</a></li>
+            <li><span>Métro</span>Ligne B — Foch (3 min)</li>
+            <li><span>Bus</span>C4, C13 — arrêt Vendôme</li>
+            <li><span>Parking</span>Parking Édouard-Herriot, 150 m</li>
+            <li><span>Accessibilité</span>Plain-pied, ascenseur, sanitaires adaptés</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ FORMULAIRE RDV ══════════════════════════════ -->
+<section class="rdv" id="rdv">
+  <div class="container rdv-inner">
+
+    <div class="rdv-copy reveal">
+      <p class="eyebrow eyebrow-light">Prendre rendez-vous</p>
+      <h2>Décrivez votre besoin, on vous rappelle</h2>
+      <p>Le secrétariat traite les demandes du lundi au vendredi et vous rappelle sous
+         24&nbsp;h ouvrées pour fixer le créneau. Pour une douleur aiguë, préférez le
+         téléphone : nous gardons des places chaque matin.</p>
+      <a class="btn btn-white" href="tel:+33478000000">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M5 4h3l1.6 4-2 1.4a12 12 0 0 0 5.9 5.9l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16 16 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>
+        04 78 00 00 00
+      </a>
+      <ul class="rdv-trust">
+        <li>Réponse sous 24&nbsp;h ouvrées</li>
+        <li>Aucun acte engagé sans devis</li>
+        <li>Données conservées 3 ans maximum</li>
+      </ul>
+    </div>
+
+    <div class="rdv-form-wrap reveal">
+      <form class="form" id="rdvForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="f-nom">Nom et prénom <span aria-hidden="true">*</span></label>
+            <input id="f-nom" name="nom" type="text" autocomplete="name" placeholder="Camille Dupont" required />
+            <p class="err" data-for="f-nom"></p>
+          </div>
+          <div class="field">
+            <label for="f-tel">Téléphone <span aria-hidden="true">*</span></label>
+            <input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="06 12 34 56 78" required />
+            <p class="err" data-for="f-tel"></p>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="f-mail">E-mail</label>
+            <input id="f-mail" name="email" type="email" autocomplete="email" placeholder="camille@exemple.fr" />
+            <p class="err" data-for="f-mail"></p>
+          </div>
+          <div class="field">
+            <label for="f-motif">Motif de la consultation <span aria-hidden="true">*</span></label>
+            <select id="f-motif" name="motif" required>
+              <option value="">Choisir un motif…</option>
+              <option>Première consultation / bilan</option>
+              <option>Contrôle et détartrage</option>
+              <option>Douleur ou urgence</option>
+              <option>Esthétique du sourire</option>
+              <option>Implant ou prothèse</option>
+              <option>Orthodontie / aligneurs</option>
+              <option>Consultation enfant</option>
+              <option>Autre</option>
+            </select>
+            <p class="err" data-for="f-motif"></p>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="f-prat">Praticien souhaité</label>
+            <select id="f-prat" name="praticien">
+              <option>Peu importe — le premier disponible</option>
+              <option>Dr Camille Berthier</option>
+              <option>Dr Yanis Lefranc</option>
+              <option>Dr Léa Nguyen</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-creneau">Créneau souhaité</label>
+            <input id="f-creneau" name="creneau" type="text" placeholder="Ex. : jeudi matin, ou fin de journée" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-msg">Votre message</label>
+          <textarea id="f-msg" name="message" rows="4" placeholder="Décrivez brièvement votre situation : depuis quand, quelle dent, avez-vous déjà été suivi ailleurs…"></textarea>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="f-rgpd" name="rgpd" required />
+          <span>J'accepte que ces informations soient utilisées pour me recontacter au sujet
+                de ma demande de rendez-vous. <a href="#mentions">En savoir plus</a>.</span>
+        </label>
+        <p class="err" data-for="f-rgpd"></p>
+
+        <button class="btn btn-primary btn-block" type="submit">Envoyer ma demande</button>
+        <p class="form-note">Maquette de démonstration : le formulaire n'envoie
+           réellement aucune donnée.</p>
+      </form>
+
+      <div class="form-done" id="formDone" hidden>
+        <span class="done-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>
+        </span>
+        <h3>Demande bien reçue</h3>
+        <p id="doneDetail">Le secrétariat vous rappelle sous 24&nbsp;h ouvrées pour
+           confirmer le créneau.</p>
+        <button class="btn btn-ghost" type="button" id="formReset">Faire une autre demande</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════ PIED DE PAGE ══════════════════════════════ -->
+<footer class="foot" id="mentions">
+  <div class="container">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img">
+            <path d="M9 17.5a7 7 0 0 0 14 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="11.5" cy="11" r="1.7" fill="currentColor"/>
+            <circle cx="20.5" cy="11" r="1.7" fill="currentColor"/>
+          </svg>
+        </span>
+        <div>
+          <b>Cabinet Aria</b>
+          <p>Cabinet dentaire · 24 rue Vendôme, 69006 Lyon<br />
+             Conventionné secteur 1 — SELARL au capital de 10 000 €</p>
+        </div>
+      </div>
+
+      <nav class="foot-cols" aria-label="Navigation de pied de page">
+        <div>
+          <h4>Soins</h4>
+          <ul>
+            <li><a href="#soins">Prévention</a></li>
+            <li><a href="#soins">Esthétique</a></li>
+            <li><a href="#soins">Implantologie</a></li>
+            <li><a href="#soins">Orthodontie</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Le cabinet</h4>
+          <ul>
+            <li><a href="#equipe">L'équipe</a></li>
+            <li><a href="#cabinet">Plateau technique</a></li>
+            <li><a href="#avis">Avis patients</a></li>
+            <li><a href="#tarifs">Tarifs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Pratique</h4>
+          <ul>
+            <li><a href="#infos">Horaires &amp; accès</a></li>
+            <li><a href="#faq">Questions fréquentes</a></li>
+            <li><a href="#rdv">Rendez-vous</a></li>
+            <li><a href="tel:+33478000000">04 78 00 00 00</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="foot-legal">
+      <p>Maquette de démonstration — le Cabinet Aria est un cabinet fictif créé pour un
+         portfolio. Aucune donnée n'est collectée, aucun rendez-vous n'est réellement pris.</p>
+      <ul>
+        <li>© 2026 Cabinet Aria</li>
+        <li><a href="#mentions">Mentions légales</a></li>
+        <li><a href="#mentions">Confidentialité</a></li>
+        <li><a href="#mentions">Accessibilité</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- Dock mobile -->
+<div class="dock">
+  <a class="dock-btn dock-ghost" href="tel:+33478000000">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M5 4h3l1.6 4-2 1.4a12 12 0 0 0 5.9 5.9l1.4-2 4 1.6v3a2 2 0 0 1-2.2 2A16 16 0 0 1 3 6.2 2 2 0 0 1 5 4z"/></svg>
+    Appeler
+  </a>
+  <a class="dock-btn dock-solid" href="#rdv">Prendre rendez-vous</a>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
