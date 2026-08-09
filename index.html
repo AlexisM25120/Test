@@ -1,293 +1,424 @@
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="fr" data-tone="forest">
 <head>
-  <meta charset="utf-8" />
-  <title>DUNE &amp; GLASS — Immobilier de prestige, Dubaï</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Agence immobilière de prestige à Dubaï — villas, penthouses et adresses waterfront à Palm Jumeirah, Downtown et Dubai Marina." />
-  <link rel="stylesheet" href="assets/css/style.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Montbellet Paysage &amp; Piscines — Faire pousser des lieux</title>
+<meta name="description" content="Entreprise artisanale de paysage depuis 1994. Création de jardins, terrasses, pavage, piscines bois, chalets et entretien en Saône-et-Loire (71) et dans l'Ain (01).">
+<meta name="theme-color" content="#08120c">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Montbellet Paysage &amp; Piscines">
+<meta property="og:description" content="Création, piscines et entretien d'espaces extérieurs en Saône-et-Loire et dans l'Ain. Artisan depuis 1994.">
+<meta property="og:locale" content="fr_FR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2308120c'/%3E%3Cpath d='M16 26V12' stroke='%23c6f24e' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M16 17c-6 0-9-3-9-9 6 0 9 3 9 9zM16 20c6 0 9-3 9-9-6 0-9 3-9 9z' fill='%23c6f24e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LandscapingBusiness",
+  "name": "Montbellet Paysage & Piscines",
+  "description": "Entreprise artisanale spécialisée dans la création et l'entretien d'espaces extérieurs, l'installation de piscines et de chalets.",
+  "foundingDate": "1994",
+  "telephone": "+33385331771",
+  "url": "https://www.montbellet-paysage.fr",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "42 rue de l'Abreuvoir, Hameau du Bas de Montbellet",
+    "postalCode": "71260",
+    "addressLocality": "Montbellet",
+    "addressRegion": "Saône-et-Loire",
+    "addressCountry": "FR"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "17:00"
+  },
+  "areaServed": [
+    {"@type":"AdministrativeArea","name":"Saône-et-Loire (71)"},
+    {"@type":"AdministrativeArea","name":"Ain (01)"}
+  ]
+}
+</script>
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
 
-<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-
-<nav class="rail" aria-label="Navigation principale">
-  <a class="rail-brand brand" href="#top">DUNE &amp; GLASS</a>
-  <ul class="rail-nav">
-    <li><a class="rail-link active" href="#top" data-label="Accueil" data-section="top"><span class="sr-only">Accueil</span></a></li>
-    <li><a class="rail-link" href="#biens" data-label="Sélection" data-section="biens"><span class="sr-only">Sélection</span></a></li>
-    <li><a class="rail-link" href="#agence" data-label="Agence" data-section="agence"><span class="sr-only">Agence</span></a></li>
-    <li><a class="rail-link" href="#avis" data-label="Avis" data-section="avis"><span class="sr-only">Avis</span></a></li>
-    <li><a class="rail-link" href="#contact" data-label="Contact" data-section="contact"><span class="sr-only">Contact</span></a></li>
-  </ul>
-  <a class="rail-cta" href="#contact">RDV</a>
-</nav>
-
-<div class="mobile-dock">
-  <a class="brand" href="#top">DUNE <em>&amp;</em> GLASS</a>
-  <a class="btn btn-brass" href="#contact">Rendez-vous</a>
-</div>
-
-<div class="page">
-
-<header class="hero" id="top">
-  <div class="hero-viewport">
-    <div class="hero-scene" id="scene">
-
-      <div class="layer layer-sky">
-        <div class="rise">
-          <div class="sky-dusk"></div>
-          <div class="sky-night"></div>
-          <canvas id="starCanvas"></canvas>
-          <div class="moon"></div>
-        </div>
-      </div>
-
-      <div class="layer layer-far" id="layerFar"><div class="rise" id="riseFar"></div></div>
-      <div class="layer layer-mid" id="layerMid"><div class="rise" id="riseMid"></div></div>
-      <div class="layer layer-near" id="layerNear"><div class="rise" id="riseNear"></div></div>
-
-      <div class="layer layer-glow"><div class="rise"><div class="horizon-glow"></div></div></div>
-      <div class="layer layer-dust"><div class="rise"><canvas id="dustCanvas"></canvas></div></div>
-
-    </div>
-  </div>
-
-  <div class="container hero-content">
-    <p class="eyebrow">Agence immobilière de prestige — Dubaï</p>
-    <h1>Du sable naît<br /><em>le verre.</em></h1>
-    <p class="hero-sub">Villas de la Palm Jumeirah, penthouses de Downtown, adresses waterfront de la Marina — nous négocions l'immobilier de prestige dubaïote avec la discrétion d'un conseiller privé.</p>
-    <div class="hero-cta">
-      <a class="btn btn-brass" href="#biens">Découvrir nos biens</a>
-      <a class="btn btn-ghost" href="#contact">Planifier une visite</a>
-    </div>
-  </div>
-
-  <div class="scroll-cue"><span class="line"></span> Faites défiler</div>
+<!-- ─────────────────────────── NAV ─────────────────────────── -->
+<header class="dock" id="dock">
+  <a class="dock__brand" href="#top" aria-label="Montbellet Paysage, retour en haut">
+    <svg class="dock__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27V12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M16 17c-6 0-9-3-9-9 6 0 9 3 9 9zM16 20c6 0 9-3 9-9-6 0-9 3-9 9z" fill="currentColor"/></svg>
+    <span class="dock__name"><b>Montbellet</b> Paysage <em>&amp; Piscines</em></span>
+  </a>
+  <nav class="dock__links" aria-label="Navigation principale">
+    <a href="#savoir-faire"><span>Savoir-faire</span></a>
+    <a href="#piscines"><span>Piscines</span></a>
+    <a href="#zone"><span>Zone</span></a>
+    <a href="#collectivites"><span>Collectivités</span></a>
+  </nav>
+  <a class="dock__cta btn btn--pill" href="#contact"><span>Devis gratuit</span></a>
+  <button class="dock__burger" id="burger" aria-expanded="false" aria-controls="overlay">
+    <span class="sr-only">Ouvrir le menu</span><i></i><i></i>
+  </button>
+  <div class="dock__progress" aria-hidden="true"><span id="progress"></span></div>
 </header>
 
-<section class="stats" id="chiffres">
-  <div class="container">
-    <p class="stats-copy reveal">
-      Depuis <span class="stat-inline tabular">2012</span>, Dune &amp; Glass a orchestré la vente de <span class="stat-inline tabular">312</span> propriétés pour une valeur cumulée de <span class="stat-inline tabular">AED 2,4&nbsp;Md</span>. Nos clients nous notent <span class="stat-inline tabular">4,9/5</span>, nous suivons <span class="stat-inline tabular">48</span> mandats actifs à travers <span class="stat-inline tabular">6</span> quartiers de prestige, avec un taux de fidélisation de <span class="stat-inline tabular">71&nbsp;%</span> sur les douze derniers mois.
-    </p>
+<div class="overlay" id="overlay" hidden>
+  <nav class="overlay__nav" aria-label="Menu">
+    <a href="#savoir-faire"><i>01</i> Savoir-faire</a>
+    <a href="#piscines"><i>02</i> Piscines</a>
+    <a href="#chalets"><i>03</i> Chalets</a>
+    <a href="#entretien"><i>04</i> Entretien</a>
+    <a href="#collectivites"><i>05</i> Collectivités</a>
+    <a href="#zone"><i>06</i> Zone d'intervention</a>
+    <a href="#contact"><i>07</i> Contact</a>
+  </nav>
+  <div class="overlay__side">
+    <p class="overlay__label">Appeler l'atelier</p>
+    <a class="overlay__tel" href="tel:+33385331771">03 85 33 17 71</a>
+    <p class="overlay__hours">Du lundi au vendredi, 9h – 17h<br>Interventions sur rendez-vous</p>
+    <p class="overlay__addr">42 rue de l'Abreuvoir<br>Hameau du Bas de Montbellet<br>71260 Montbellet</p>
   </div>
+</div>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ─────────────────────────── HERO ─────────────────────────── -->
+<section class="hero" data-tone="forest">
+  <canvas class="hero__canvas" id="terrain" aria-hidden="true"></canvas>
+  <div class="hero__vignette" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <p class="hero__eyebrow reveal"><span class="tick"></span> Montbellet · Saône-et-Loire · artisan depuis 1994</p>
+    <h1 class="hero__title">
+      <span class="line" data-split>Faire pousser</span>
+      <span class="line line--alt" data-split>des lieux.</span>
+    </h1>
+    <div class="hero__meta">
+      <p class="hero__lede reveal">Création de jardins, terrasses et piscines bois. Entretien toute l'année.
+        Une entreprise artisanale <em>à taille humaine</em>, sur le 71 et le 01.</p>
+      <div class="hero__actions reveal">
+        <a class="btn btn--solid magnetic" href="#contact"><span>Parlons de votre projet</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a class="btn btn--ghost" href="tel:+33385331771"><span>03 85 33 17 71</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>Tournus ✦ Pont-de-Vaux ✦ Mâcon ✦ Montbellet ✦ Lugny ✦ Viré ✦ Clessé ✦</span>
+      <span>Tournus ✦ Pont-de-Vaux ✦ Mâcon ✦ Montbellet ✦ Lugny ✦ Viré ✦ Clessé ✦</span>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true"><span></span>défiler</div>
+  <p class="hero__coords" aria-hidden="true">46°28′31″N · 4°55′42″E</p>
 </section>
 
-<section class="section-pad" id="biens">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <p class="eyebrow">Sélection</p>
-        <h2>Quatre adresses, quatre visions de Dubaï</h2>
-      </div>
-      <p>Des biens choisis pour leur emplacement, leur vue et leur potentiel — hors marché pour la plupart.</p>
-    </div>
+<!-- ─────────────────────────── CHIFFRES ─────────────────────────── -->
+<section class="figures" data-tone="stone">
+  <ul class="figures__grid">
+    <li class="reveal"><b data-count="1994" data-plain>1994</b><span>Année de création. Trente ans de jardins.</span></li>
+    <li class="reveal"><b data-count="2">0</b><span>Départements couverts : Saône-et-Loire &amp; Ain.</span></li>
+    <li class="reveal"><b data-count="10">0</b><span>Ans de garantie sur les bassins bois.</span></li>
+    <li class="reveal"><b data-count="50" data-suffix="%">0</b><span>De crédit d'impôt sur les prestations éligibles.<sup>*</sup></span></li>
+  </ul>
+</section>
 
-    <div class="filmstrip-wrap reveal">
-      <button class="fs-btn fs-prev" type="button" aria-label="Bien précédent">‹</button>
-      <div class="filmstrip" id="filmstrip">
-
-        <article class="card" style="--art-sky-1:#16233a; --art-sky-2:#26405a;">
-          <div class="card-art">
-            <div class="sky"></div>
-            <div class="sun" style="top:22px; left:26px;"></div>
-            <div class="tower" style="left:8%; width:22%; height:60%; --art-b1:#3a4f68; --art-b2:#212f42;"></div>
-            <div class="tower" style="left:34%; width:16%; height:78%; --art-b1:#465e78; --art-b2:#232f42;"></div>
-            <div class="tower" style="left:54%; width:26%; height:52%; --art-b1:#3a4f68; --art-b2:#1e2a3c;"></div>
-            <div class="tower" style="left:82%; width:14%; height:70%; --art-b1:#465e78; --art-b2:#212f42;"></div>
-          </div>
-          <div class="card-body">
-            <div class="card-top">
-              <div>
-                <h3>Villa Aurora</h3>
-                <div class="card-loc">Palm Jumeirah — Frond D</div>
-              </div>
-              <div class="card-price tabular">AED 18 500 000</div>
-            </div>
-            <p class="card-desc">Villa contemporaine en front de mer, piscine à débordement et accès plage privé sur la Frond.</p>
-            <div class="card-specs">
-              <span><b>5</b> ch.</span><span><b>620</b> m²</span><span>Vue <b>mer d'Arabie</b></span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" style="--art-sky-1:#241c30; --art-sky-2:#3a2c46;">
-          <div class="card-art">
-            <div class="sky"></div>
-            <div class="sun" style="top:20px; left:70%;"></div>
-            <div class="tower" style="left:20%; width:14%; height:50%; --art-b1:#4a3f5c; --art-b2:#241f30;"></div>
-            <div class="tower" style="left:38%; width:20%; height:88%; --art-b1:#59496a; --art-b2:#241f30;"></div>
-            <div class="tower" style="left:64%; width:16%; height:66%; --art-b1:#4a3f5c; --art-b2:#211c2a;"></div>
-          </div>
-          <div class="card-body">
-            <div class="card-top">
-              <div>
-                <h3>The Meridian Residence</h3>
-                <div class="card-loc">Downtown Dubai</div>
-              </div>
-              <div class="card-price tabular">AED 12 200 000</div>
-            </div>
-            <p class="card-desc">Penthouse d'angle, vues directes sur le Burj Khalifa et la Dubai Fountain, terrasse privative.</p>
-            <div class="card-specs">
-              <span><b>4</b> ch.</span><span><b>410</b> m²</span><span>Vue <b>Burj Khalifa</b></span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" style="--art-sky-1:#122733; --art-sky-2:#1c3c44;">
-          <div class="card-art">
-            <div class="sky"></div>
-            <div class="sun" style="top:24px; left:18%;"></div>
-            <div class="tower" style="left:12%; width:18%; height:72%; --art-b1:#2f5a5a; --art-b2:#172c30;"></div>
-            <div class="tower" style="left:40%; width:24%; height:48%; --art-b1:#356662; --art-b2:#15292c;"></div>
-            <div class="tower" style="left:70%; width:18%; height:84%; --art-b1:#2f5a5a; --art-b2:#172c30;"></div>
-          </div>
-          <div class="card-body">
-            <div class="card-top">
-              <div>
-                <h3>Marina Vista Tower</h3>
-                <div class="card-loc">Dubai Marina</div>
-              </div>
-              <div class="card-price tabular">AED 6 850 000</div>
-            </div>
-            <p class="card-desc">Appartement waterfront avec balcon filant, à deux pas de la promenade et des marinas privées.</p>
-            <div class="card-specs">
-              <span><b>3</b> ch.</span><span><b>210</b> m²</span><span>Vue <b>marina</b></span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card" style="--art-sky-1:#1a1f30; --art-sky-2:#2c344a;">
-          <div class="card-art">
-            <div class="sky"></div>
-            <div class="sun" style="top:18px; left:60%;"></div>
-            <div class="tower" style="left:16%; width:20%; height:56%; --art-b1:#3d4966; --art-b2:#1e2436;"></div>
-            <div class="tower" style="left:44%; width:16%; height:74%; --art-b1:#48557a; --art-b2:#1e2436;"></div>
-            <div class="tower" style="left:66%; width:22%; height:44%; --art-b1:#3d4966; --art-b2:#1a202f;"></div>
-          </div>
-          <div class="card-body">
-            <div class="card-top">
-              <div>
-                <h3>Business Bay Loft</h3>
-                <div class="card-loc">Business Bay</div>
-              </div>
-              <div class="card-price tabular">AED 4 100 000</div>
-            </div>
-            <p class="card-desc">Duplex d'angle avec double hauteur sous plafond et vue dégagée sur le canal de Dubaï.</p>
-            <div class="card-specs">
-              <span><b>2</b> ch.</span><span><b>165</b> m²</span><span>Vue <b>canal</b></span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-      <button class="fs-btn fs-next" type="button" aria-label="Bien suivant">›</button>
+<!-- ─────────────────────────── MANIFESTE ─────────────────────────── -->
+<section class="manifesto" data-tone="forest">
+  <p class="sec-label reveal"><span class="tick"></span> L'atelier</p>
+  <div class="manifesto__grid">
+    <blockquote class="manifesto__text">
+      <p data-split-words>Nous ne vendons pas des mètres carrés d'aménagement. Nous dessinons l'endroit où vous allez passer vos étés, ranger vos outils, regarder vos enfants nager.</p>
+    </blockquote>
+    <div class="manifesto__aside reveal">
+      <p>Entreprise artisanale à taille humaine, Montbellet Paysage crée et entretient les espaces extérieurs des particuliers et des collectivités territoriales, et installe piscines et chalets sur l'Ain et la Saône-et-Loire.</p>
+      <dl class="spec">
+        <div><dt>Interventions</dt><dd>À la demande, au forfait ou en contrat annuel</dd></div>
+        <div><dt>Clients</dt><dd>Particuliers &amp; collectivités</dd></div>
+        <div><dt>Matériel</dt><dd>Équipement professionnel, investi depuis 1994</dd></div>
+      </dl>
     </div>
   </div>
 </section>
 
-<section class="section-pad approach" id="agence">
-  <div class="container">
-    <div class="reveal">
-      <p class="eyebrow">Notre approche</p>
-      <h2>La connaissance du marché, la discrétion d'un family office</h2>
-      <ul class="approach-list">
-        <li><span class="mark">—</span> Accès à des biens hors marché dans les zones en pleine propriété (Palm Jumeirah, Downtown, Emirates Hills).</li>
-        <li><span class="mark">—</span> Accompagnement juridique et fiscal pour acquéreurs internationaux, du mandat à la remise des clés.</li>
-        <li><span class="mark">—</span> Service de conciergerie post-acquisition : gestion locative, entretien, revente.</li>
-      </ul>
-    </div>
-    <div class="emblem-wrap reveal">
-      <div class="cube">
-        <div class="face f1"></div>
-        <div class="face f2"></div>
-        <div class="face f3"></div>
-        <div class="face f4"></div>
-        <div class="face f5"></div>
-        <div class="face f6"></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ─────────────────────────── SAVOIR-FAIRE (stack) ─────────────────────────── -->
+<section id="savoir-faire" class="stack">
 
-<section class="section-pad" id="avis">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <p class="eyebrow">Ils nous ont fait confiance</p>
-        <h2>Ce qu'en disent nos clients</h2>
-      </div>
-    </div>
-    <div class="testimonials-grid">
-      <div class="quote reveal">
-        <p>« Nous avons acheté à distance depuis Paris. Chaque étape nous a été expliquée avant même qu'on la demande. »</p>
-        <footer><b>Amira K.</b> — Acquéreuse, Palm Jumeirah</footer>
-      </div>
-      <div class="quote reveal">
-        <p>« Un accès à des biens qu'on ne trouve jamais en ligne. Le suivi locatif a été impeccable. »</p>
-        <footer><b>Julien R.</b> — Investisseur, Downtown Dubai</footer>
-      </div>
-      <div class="quote reveal">
-        <p>« La négociation a été menée avec une discrétion totale. Exactement ce que nous cherchions. »</p>
-        <footer><b>Sophie &amp; Marc L.</b> — Dubai Marina</footer>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section-pad contact" id="contact">
-  <div class="container">
-    <div class="reveal">
-      <p class="eyebrow">Contact</p>
-      <h2>Discutons de votre projet à Dubaï</h2>
-      <p class="hero-sub" style="margin-top:16px;">Achat, vente ou investissement locatif — un conseiller dédié vous répond sous 24 heures.</p>
-      <div class="contact-details">
-        <div><span class="label">Bureau</span>Gate Village, DIFC, Dubaï, Émirats arabes unis</div>
-        <div><span class="label">Téléphone</span>+971 4 000 0000</div>
-        <div><span class="label">E-mail</span>contact@duneandglass.example</div>
-      </div>
-    </div>
-    <form class="form reveal" onsubmit="return false;">
-      <div class="form-row">
-        <div><label for="name">Nom complet</label><input id="name" type="text" placeholder="Jeanne Dupont" /></div>
-        <div><label for="email">E-mail</label><input id="email" type="email" placeholder="jeanne@exemple.com" /></div>
-      </div>
-      <div class="form-row">
-        <div>
-          <label for="type">Type de projet</label>
-          <select id="type">
-            <option>Achat résidentiel</option>
-            <option>Investissement locatif</option>
-            <option>Vente d'un bien</option>
-          </select>
+  <article class="panel" data-tone="forest" id="creation">
+    <div class="panel__bg art art--creation" aria-hidden="true"></div>
+    <div class="panel__inner">
+      <div class="panel__col">
+        <div class="panel__head">
+          <span class="panel__num">01</span>
+          <h2 class="panel__title" data-split>Création</h2>
+          <p class="panel__kicker">Jardins, terrasses, pavage — du dessin au dernier joint.</p>
         </div>
-        <div>
-          <label for="budget">Budget indicatif (AED)</label>
-          <input id="budget" type="text" placeholder="5 000 000 – 10 000 000" />
+        <ul class="deliver">
+          <li><b>Terrasses en bois</b><span>et plages de piscine</span></li>
+          <li><b>Pavage &amp; bordures</b><span>dallage, murets</span></li>
+          <li><b>Clôtures &amp; portails</b><span>palissades bois, haies</span></li>
+          <li><b>Pelouses BIO</b><span>massifs, potagers</span></li>
+        </ul>
+      </div>
+      <figure class="frame">
+        <img src="assets/img/creation.jpg" alt="Terrasse en bois et massifs réalisés par Montbellet Paysage" loading="lazy" data-photo>
+        <div class="frame__art art--deck" aria-hidden="true"></div>
+        <figcaption>Terrasse bois &amp; plage de piscine</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="panel" data-tone="water" id="piscines">
+    <canvas class="panel__bg" id="water" aria-hidden="true"></canvas>
+    <div class="panel__inner">
+      <div class="panel__col">
+        <div class="panel__head">
+          <span class="panel__num">02</span>
+          <h2 class="panel__title" data-split>Piscines</h2>
+          <p class="panel__kicker">Prêtes à plonger. Étude, installation, entretien.</p>
+        </div>
+        <div class="tabs" id="poolTabs">
+          <div class="tabs__bar" role="tablist" aria-label="Types de piscines">
+            <button role="tab" id="tab-bois" aria-controls="pane-bois" aria-selected="true" class="is-active">100 % bois</button>
+            <button role="tab" id="tab-std" aria-controls="pane-std" aria-selected="false">Standards</button>
+          </div>
+          <div role="tabpanel" id="pane-bois" aria-labelledby="tab-bois" class="tabs__pane is-active">
+            <p>Un bassin en <b>bois naturel</b>, structure et margelles comprises. La matière vieillit avec le jardin au lieu de lui résister.</p>
+            <ul class="ticks">
+              <li>Bassin 100 % bois naturel</li>
+              <li>Produits garantis 10 ans</li>
+              <li>Aménagement des abords sur mesure</li>
+            </ul>
+          </div>
+          <div role="tabpanel" id="pane-std" aria-labelledby="tab-std" class="tabs__pane" hidden>
+            <p>Une gamme <b>prête à plonger</b> : formats éprouvés, pose rapide, budget maîtrisé — et le même travail d'intégration paysagère autour.</p>
+            <ul class="ticks">
+              <li>Gamme de formats standards</li>
+              <li>Étude, installation et entretien</li>
+              <li>Plages et terrasses en bois assorties</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div>
-        <label for="msg">Votre message</label>
-        <textarea id="msg" placeholder="Décrivez votre projet, vos délais, vos quartiers de préférence…"></textarea>
+      <figure class="frame">
+        <img src="assets/img/piscine.jpg" alt="Piscine bois avec plage en bois réalisée par Montbellet Paysage" loading="lazy" data-photo>
+        <div class="frame__art art--pool" aria-hidden="true"></div>
+        <figcaption>Bassin bois &amp; abords sur mesure</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="panel" data-tone="wood" id="chalets">
+    <div class="panel__bg art art--wood" aria-hidden="true"></div>
+    <div class="panel__inner">
+      <div class="panel__col">
+        <div class="panel__head">
+          <span class="panel__num">03</span>
+          <h2 class="panel__title" data-split>Chalets</h2>
+          <p class="panel__kicker">Ranger le dehors, dehors.</p>
+        </div>
+        <div class="prose">
+          <p>Un chalet en bois vous permet de ranger vos outils, votre salon de jardin, vos véhicules — et libère de la place dans la maison. Nous réalisons le chalet et sa dalle, et nous l'intégrons au reste du jardin.</p>
+          <ul class="ticks">
+            <li>Chalets de jardin en bois</li>
+            <li>Rangement outils, mobilier, véhicules</li>
+            <li>Implantation, dalle et abords</li>
+          </ul>
+        </div>
       </div>
-      <button class="btn btn-brass" type="submit">Envoyer la demande</button>
+      <figure class="frame">
+        <img src="assets/img/chalet.jpg" alt="Chalet de jardin en bois réalisé par Montbellet Paysage" loading="lazy" data-photo>
+        <div class="frame__art art--cabin" aria-hidden="true"></div>
+        <figcaption>Chalet de jardin en bois</figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <article class="panel" data-tone="moss" id="entretien">
+    <div class="panel__bg art art--grass" aria-hidden="true"></div>
+    <div class="panel__inner">
+      <div class="panel__col">
+        <div class="panel__head">
+          <span class="panel__num">04</span>
+          <h2 class="panel__title" data-split>Entretien</h2>
+          <p class="panel__kicker">Le jardin, les douze mois de l'année.</p>
+        </div>
+        <div class="cols">
+          <div>
+            <h3 class="mini">Les sols</h3>
+            <ul class="ticks">
+              <li>Tonte</li><li>Débroussaillage</li><li>Désherbage</li>
+              <li>Ramassage des feuilles</li><li>Remise en état</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="mini">Les tailles</h3>
+            <ul class="ticks">
+              <li>Taille de haies</li><li>Rosiers</li><li>Arbustes</li>
+              <li>Arbres fruitiers</li><li>Plantes grimpantes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <aside class="callout">
+        <p class="callout__big">−50 %</p>
+        <p>Agréés <b>Service à la personne</b> : une large part des prestations d'entretien ouvre droit à un crédit d'impôt de 50 %, sous conditions.</p>
+        <p class="callout__note">À la demande · au forfait · en contrat annuel</p>
+      </aside>
+    </div>
+  </article>
+
+</section>
+
+<!-- ─────────────────────────── COLLECTIVITÉS ─────────────────────────── -->
+<section id="collectivites" class="collect" data-tone="stone">
+  <p class="sec-label reveal"><span class="tick"></span> Collectivités territoriales</p>
+  <div class="collect__grid">
+    <h2 class="collect__title" data-split-words>Les espaces publics demandent la même exigence que les jardins privés.</h2>
+    <ul class="collect__list">
+      <li class="reveal"><span>01</span>Entretien de parcs et espaces paysagers publics</li>
+      <li class="reveal"><span>02</span>Élagage d'arbres</li>
+      <li class="reveal"><span>03</span>Évacuation des déchets verts</li>
+      <li class="reveal"><span>04</span>Création de chemins d'accès</li>
+      <li class="reveal"><span>05</span>Bordures et clôtures</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─────────────────────────── ZONE ─────────────────────────── -->
+<section id="zone" class="zone" data-tone="forest">
+  <div class="zone__text">
+    <p class="sec-label reveal"><span class="tick"></span> Zone d'intervention</p>
+    <h2 class="zone__title" data-split>Entre Saône<br>et Mâconnais.</h2>
+    <p class="zone__lede reveal">L'<b>entretien</b> se fait autour de l'atelier : Tournus, Pont-de-Vaux, Mâcon, Montbellet, Lugny, Viré et Clessé.
+      Les chantiers de <b>création</b> se déplacent sur toute la Saône-et-Loire (71) et l'Ain (01).</p>
+    <ul class="zone__towns" id="towns">
+      <li><button data-town="tournus">Tournus</button></li>
+      <li><button data-town="pontdevaux">Pont-de-Vaux</button></li>
+      <li><button data-town="macon">Mâcon</button></li>
+      <li><button data-town="montbellet" class="is-base">Montbellet</button></li>
+      <li><button data-town="lugny">Lugny</button></li>
+      <li><button data-town="vire">Viré</button></li>
+      <li><button data-town="clesse">Clessé</button></li>
+    </ul>
+    <p class="zone__note reveal">Survolez une commune pour la situer sur la carte.</p>
+  </div>
+
+  <figure class="zone__map">
+    <svg viewBox="0 0 54 100" role="img" aria-label="Carte schématique de la zone d'intervention autour de Montbellet, le long de la Saône.">
+      <defs>
+        <linearGradient id="riv" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#4d8fa6" stop-opacity="0"/>
+          <stop offset=".45" stop-color="#4d8fa6" stop-opacity=".55"/>
+          <stop offset="1" stop-color="#4d8fa6" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g class="map__grid">
+        <path d="M0 20H54M0 40H54M0 60H54M0 80H54"/>
+        <path d="M13.5 0V100M27 0V100M40.5 0V100"/>
+      </g>
+      <path class="map__river" d="M35 -2 C32 12 36 28 38 40 C39.4 50 34 58 28 70 C23 79 19 84 18.5 102" stroke="url(#riv)"/>
+      <path class="map__river-line" d="M35 -2 C32 12 36 28 38 40 C39.4 50 34 58 28 70 C23 79 19 84 18.5 102"/>
+      <g class="map__links" id="mapLinks"></g>
+      <g class="map__pts">
+        <g class="pt" data-town="tournus"     transform="translate(33,15.3)"><circle r="1.5"/><text x="3" y="1">Tournus</text></g>
+        <g class="pt" data-town="pontdevaux"  transform="translate(39,51.9)"><circle r="1.5"/><text x="3" y="1">Pont-de-Vaux</text></g>
+        <g class="pt" data-town="lugny"       transform="translate(14.6,48.3)"><circle r="1.5"/><text x="-3" y="1" text-anchor="end">Lugny</text></g>
+        <g class="pt" data-town="vire"        transform="translate(14.4,55.6)"><circle r="1.5"/><text x="-3" y="1" text-anchor="end">Viré</text></g>
+        <g class="pt" data-town="clesse"      transform="translate(16.7,63.7)"><circle r="1.5"/><text x="-3" y="1" text-anchor="end">Clessé</text></g>
+        <g class="pt" data-town="macon"       transform="translate(17.5,87.2)"><circle r="1.5"/><text x="-3" y="1" text-anchor="end">Mâcon</text></g>
+        <g class="pt pt--base" data-town="montbellet" transform="translate(36.1,40.3)">
+          <circle class="pt__halo" r="5"/><circle r="2.2"/><text x="3.6" y="1">Montbellet</text>
+        </g>
+      </g>
+      <text class="map__legend" x="0" y="4">Schéma indicatif — le cours de la Saône</text>
+    </svg>
+  </figure>
+</section>
+
+<!-- ─────────────────────────── PROCESSUS ─────────────────────────── -->
+<section class="steps" data-tone="stone">
+  <p class="sec-label reveal"><span class="tick"></span> Comment ça se passe</p>
+  <ol class="steps__list">
+    <li class="reveal"><span class="steps__n">1</span><h3>La prise de contact</h3><p>Un appel, un message. On échange sur ce que vous avez en tête, même si c'est encore flou.</p></li>
+    <li class="reveal"><span class="steps__n">2</span><h3>La visite</h3><p>On vient sur place. Rien ne remplace le fait de voir le terrain, l'exposition, l'existant.</p></li>
+    <li class="reveal"><span class="steps__n">3</span><h3>Le conseil</h3><p>On vous écoute, puis on s'engage à donner un avis de professionnel — y compris quand il va contre l'idée de départ.</p></li>
+    <li class="reveal"><span class="steps__n">4</span><h3>Le devis</h3><p>Si les propositions vous conviennent, on établit un devis détaillé. Gratuit, sans engagement.</p></li>
+  </ol>
+  <div class="steps__rail" aria-hidden="true"><span id="rail"></span></div>
+</section>
+
+<!-- ─────────────────────────── CONTACT ─────────────────────────── -->
+<section id="contact" class="contact" data-tone="paper">
+  <div class="contact__head">
+    <p class="sec-label reveal"><span class="tick"></span> Prendre rendez-vous</p>
+    <h2 class="contact__title" data-split>Dites-nous<br>ce que vous voyez.</h2>
+  </div>
+
+  <div class="contact__grid">
+    <div class="contact__info">
+      <a class="bigtel magnetic" href="tel:+33385331771">03&nbsp;85&nbsp;33&nbsp;17&nbsp;71</a>
+      <dl class="spec spec--dark">
+        <div><dt>Horaires</dt><dd>Lundi → vendredi, 9h – 17h</dd></div>
+        <div><dt>Atelier</dt><dd>42 rue de l'Abreuvoir<br>Hameau du Bas de Montbellet<br>71260 Montbellet</dd></div>
+        <div><dt>Rendez-vous</dt><dd>Visite à domicile, puis devis détaillé</dd></div>
+      </dl>
+    </div>
+
+    <form class="form" id="form" novalidate data-mailto="contact@montbellet-paysage.fr">
+      <div class="field">
+        <input id="f-name" name="name" type="text" required placeholder=" " autocomplete="name">
+        <label for="f-name">Votre nom</label>
+      </div>
+      <div class="field">
+        <input id="f-contact" name="contact" type="text" required placeholder=" " autocomplete="email">
+        <label for="f-contact">E-mail ou téléphone</label>
+      </div>
+      <div class="field">
+        <input id="f-city" name="city" type="text" placeholder=" " autocomplete="address-level2">
+        <label for="f-city">Commune du projet</label>
+      </div>
+      <fieldset class="chips">
+        <legend>Le projet concerne</legend>
+        <label><input type="checkbox" name="sujet" value="Création"><span>Création</span></label>
+        <label><input type="checkbox" name="sujet" value="Piscine"><span>Piscine</span></label>
+        <label><input type="checkbox" name="sujet" value="Chalet"><span>Chalet</span></label>
+        <label><input type="checkbox" name="sujet" value="Entretien"><span>Entretien</span></label>
+        <label><input type="checkbox" name="sujet" value="Collectivité"><span>Collectivité</span></label>
+      </fieldset>
+      <div class="field">
+        <textarea id="f-msg" name="message" rows="4" required placeholder=" "></textarea>
+        <label for="f-msg">Votre projet en quelques mots</label>
+      </div>
+      <button class="btn btn--solid btn--wide magnetic" type="submit"><span>Envoyer la demande</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <p class="form__note" id="formNote" role="status">Le formulaire ouvre votre messagerie avec la demande pré-remplie. Pressé&nbsp;? Appelez plutôt.</p>
     </form>
   </div>
 </section>
 
-<footer class="site-foot">
-  <div class="container foot-row">
-    <span>© 2026 Dune &amp; Glass Real Estate — Dubaï, EAU</span>
-    <ul class="foot-links">
-      <li><a href="#biens">Propriétés</a></li>
-      <li><a href="#agence">L'agence</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</footer>
+</main>
 
-</div><!-- /.page -->
+<footer class="foot" data-tone="paper">
+  <div class="foot__mark" aria-hidden="true">
+    <svg class="foot__word" viewBox="0 0 1000 150" preserveAspectRatio="xMidYMid meet">
+      <text x="500" y="120" text-anchor="middle" textLength="990" lengthAdjust="spacingAndGlyphs">MONTBELLET</text>
+    </svg>
+  </div>
+  <div class="foot__cols">
+    <div><b>Montbellet Paysage &amp; Piscines</b><br>Artisan paysagiste depuis 1994<br>71260 Montbellet</div>
+    <div><a href="tel:+33385331771">03 85 33 17 71</a><br>Lundi → vendredi, 9h – 17h</div>
+    <div>Saône-et-Loire (71) &amp; Ain (01)<br>Particuliers &amp; collectivités</div>
+  </div>
+  <p class="foot__legal"><sup>*</sup> Crédit d'impôt de 50 % au titre des services à la personne, sur les prestations éligibles et sous conditions légales en vigueur. — Maquette de refonte.</p>
+</footer>
 
 <script src="assets/js/main.js"></script>
 </body>
