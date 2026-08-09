@@ -27,21 +27,25 @@ Ouvrir `index.html` directement dans le navigateur fonctionne aussi.
 
 ## Le parti pris
 
-Le site sort du gabarit habituel « bandeau vert + trois cartes de services ». Il est
-construit autour d'une idée : **le relief**.
+Un site de paysagiste en **plein jour**, pas un site sombre de logiciel : fond chaux,
+verts de feuillage, terre cuite, serif de jardinier (EB Garamond) et sans humaniste
+(Karla). La photo passe avant l'effet.
 
-- **Matière qui change au scroll.** Toute la palette est pilotée par un attribut
-  `data-tone` (`forest`, `water`, `wood`, `moss`, `stone`, `paper`). Chaque section
-  impose sa matière et la page entière bascule dessus — fond, accent, nav, barre de
-  progression. On traverse une forêt, puis de l'eau, puis du bois.
-- **Relief topographique animé** dans le hero : lignes de niveau dessinées en canvas,
-  qui se creusent sous le curseur.
+- **La page change de matière au scroll.** Un attribut `data-tone` (`chaux`, `pierre`,
+  `bois`, `feuille`, `eau`) pilote toute la palette. Le parcours va du plein jour au
+  vert profond, passe sous l'eau pour les piscines, revient au bois clair pour les
+  chalets. L'en-tête suit.
+- **Accueil en photo pleine page** avec un léger mouvement de caméra, et une couche de
+  **lumière filtrée par le feuillage** dessinée en canvas — des taches de soleil qui
+  dérivent lentement et suivent doucement la souris.
+- **Galerie des réalisations** en grille asymétrique, alimentée par une simple liste
+  dans `main.js`.
 - **Panneaux empilés.** Les quatre métiers (Création, Piscines, Chalets, Entretien)
-  glissent les uns sur les autres en `position: sticky` plutôt que de défiler à plat.
-- **Caustiques d'eau** en canvas pour la section piscines.
-- **Carte schématique** de la zone d'intervention, tracée en SVG le long de la Saône :
-  survoler une commune la relie à l'atelier.
-- Curseur personnalisé, boutons magnétiques, texte révélé mot à mot, compteurs.
+  glissent les uns sur les autres en `position: sticky`.
+- **Reflets d'eau** en canvas dans la section piscines — doux, pas géométriques.
+- **Carte de la zone** tracée en SVG le long de la Saône : survoler une commune la
+  relie à l'atelier.
+- Boutons magnétiques, texte révélé mot à mot, apparitions au scroll, grain de papier.
 
 ## Contenu
 
@@ -56,9 +60,9 @@ Deux points à valider avant mise en ligne :
    `<form ... data-mailto="contact@montbellet-paysage.fr">`. Remplacer par la vraie
    adresse, ou brancher un service de formulaire (Formspree, Netlify Forms…) si
    l'hébergeur le permet.
-2. **Photos.** Aucune photo n'est embarquée. Voir `assets/img/README.md` : déposer
-   `creation.jpg`, `piscine.jpg` et `chalet.jpg` dans ce dossier suffit à remplacer
-   les visuels générés.
+2. **Photos et logo.** Aucune image n'est embarquée. Voir `assets/img/README.md` :
+   déposer `logo.svg`, `hero.jpg`, `creation.jpg`, `piscine.jpg`, `chalet.jpg` et le
+   dossier `realisations/` suffit — le code bascule tout seul.
 
 La mention de crédit d'impôt est formulée « sur les prestations éligibles et sous
 conditions », avec le renvoi légal en pied de page.

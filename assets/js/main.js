@@ -5,6 +5,22 @@
 (function () {
   'use strict';
 
+  /* ---------------------------------------------------------
+     Réalisations : liste des photos de la galerie.
+     Déposer les fichiers dans assets/img/realisations/ puis
+     ajuster les lignes ci-dessous. Une entrée dont l'image est
+     absente disparaît d'elle-même ; si aucune n'existe, toute
+     la section reste masquée.
+     --------------------------------------------------------- */
+  var REALISATIONS = [
+    { src: 'assets/img/realisations/01.jpg', legende: 'Terrasse en bois et plage de piscine' },
+    { src: 'assets/img/realisations/02.jpg', legende: 'Massif fleuri en bordure de pelouse' },
+    { src: 'assets/img/realisations/03.jpg', legende: 'Pavage et murets en pierre' },
+    { src: 'assets/img/realisations/04.jpg', legende: 'Bassin bois intégré au talus' },
+    { src: 'assets/img/realisations/05.jpg', legende: 'Chalet de jardin en bois' },
+    { src: 'assets/img/realisations/06.jpg', legende: 'Haie taillée et allée d\'accès' }
+  ];
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var $ = function (s, c) { return (c || document).querySelector(s); };
@@ -12,16 +28,54 @@
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
 
   /* ---------------------------------------------------------
-     1. Photos : bascule vers le fond généré si le fichier manque
+     1. Photos manquantes → repli sur le visuel dessiné
      --------------------------------------------------------- */
-  $$('img[data-photo]').forEach(function (img) {
+  function watchPhoto(img) {
     var fail = function () { img.classList.add('is-missing'); };
     img.addEventListener('error', fail);
     if (img.complete && img.naturalWidth === 0) fail();
-  });
+  }
+  $$('img[data-photo]').forEach(watchPhoto);
 
   /* ---------------------------------------------------------
-     2. Découpage du texte en mots animables
+     2. Galerie des réalisations
+     --------------------------------------------------------- */
+  var grid = $('#galleryGrid');
+  var gallerySection = $('#realisations');
+  if (grid && gallerySection) {
+    var pending = REALISATIONS.length;
+    var kept = 0;
+
+    var settle = function () {
+      if (--pending > 0) return;
+      if (kept > 0) {
+        gallerySection.hidden = false;
+      } else {
+        ['.nav__links a[href="#realisations"]', '.menu__nav a[href="#realisations"]']
+          .forEach(function (sel) { var l = $(sel); if (l) l.hidden = true; });
+      }
+    };
+
+    REALISATIONS.forEach(function (item) {
+      var fig = document.createElement('figure');
+      fig.className = 'shot';
+      var img = document.createElement('img');
+      img.alt = item.legende;
+      var cap = document.createElement('figcaption');
+      cap.textContent = item.legende;
+      fig.appendChild(img);
+      fig.appendChild(cap);
+      // Ordre conservé : on pose toutes les cases, on retire celles qui manquent.
+      grid.appendChild(fig);
+
+      img.addEventListener('load', function () { kept++; settle(); });
+      img.addEventListener('error', function () { fig.remove(); settle(); });
+      img.src = item.src;
+    });
+  }
+
+  /* ---------------------------------------------------------
+     3. Découpage du texte en mots animables
      --------------------------------------------------------- */
   function splitText(el) {
     var idx = 0;
@@ -48,83 +102,50 @@
   $$('[data-split], [data-split-words]').forEach(splitText);
 
   /* ---------------------------------------------------------
-     3. Apparitions au scroll + compteurs
+     4. Apparitions au scroll
      --------------------------------------------------------- */
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
       e.target.classList.add('in');
       io.unobserve(e.target);
-      var n = e.target.querySelector ? e.target.querySelector('[data-count]') : null;
-      if (e.target.hasAttribute && e.target.hasAttribute('data-count')) n = e.target;
-      if (n) countUp(n);
     });
-  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
 
   $$('.reveal, [data-split], [data-split-words]').forEach(function (el) { io.observe(el); });
 
-  function countUp(el) {
-    if (el.hasAttribute('data-plain') || reduced) { el.textContent = el.dataset.count + (el.dataset.suffix || ''); return; }
-    var target = parseFloat(el.dataset.count);
-    var suffix = el.dataset.suffix || '';
-    var t0 = performance.now();
-    var dur = 1100;
-    (function tick(now) {
-      var p = clamp((now - t0) / dur, 0, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    })(t0);
-  }
-
   /* ---------------------------------------------------------
-     4. Changement de matière (tone) au fil du scroll
+     5. Matière de la page au fil du scroll
      --------------------------------------------------------- */
   var toneSections = $$('main [data-tone], footer[data-tone]');
   if (toneSections.length) {
     var toneIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          var t = e.target.getAttribute('data-tone');
-          if (t && document.documentElement.dataset.tone !== t) {
-            document.documentElement.dataset.tone = t;
-            document.querySelector('meta[name="theme-color"]')
-              .setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
-            window.dispatchEvent(new CustomEvent('tonechange'));
-          }
-        }
+        if (!e.isIntersecting) return;
+        var t = e.target.getAttribute('data-tone');
+        if (!t || document.documentElement.dataset.tone === t) return;
+        document.documentElement.dataset.tone = t;
+        var tc = document.querySelector('meta[name="theme-color"]');
+        if (tc) tc.setAttribute('content', getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
       });
     }, { rootMargin: '-48% 0px -48% 0px' });
     toneSections.forEach(function (s) { toneIO.observe(s); });
   }
 
   /* ---------------------------------------------------------
-     5. Barre de progression + lien de nav actif + rail
+     6. En-tête : filet au scroll + lien courant
      --------------------------------------------------------- */
-  var progress = $('#progress');
-  var rail = $('#rail');
-  var stepsSec = $('.steps');
   var ticking = false;
-
-  function onScroll() {
+  window.addEventListener('scroll', function () {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(function () {
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      if (progress) progress.style.width = (h > 0 ? clamp(window.scrollY / h, 0, 1) * 100 : 0) + '%';
-      if (rail && stepsSec) {
-        var r = stepsSec.getBoundingClientRect();
-        var p = clamp((window.innerHeight - r.top) / (r.height + window.innerHeight * 0.3), 0, 1);
-        rail.style.width = (p * 100) + '%';
-      }
+      document.body.classList.toggle('scrolled', window.scrollY > 20);
       ticking = false;
     });
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  onScroll();
+  }, { passive: true });
 
-  var navLinks = $$('.dock__links a');
+  var navLinks = $$('.nav__links a[data-nav]');
   var navTargets = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
   if (navTargets.some(Boolean)) {
     var navIO = new IntersectionObserver(function (entries) {
@@ -140,39 +161,29 @@
   }
 
   /* ---------------------------------------------------------
-     6. Menu plein écran
+     7. Menu plein écran
      --------------------------------------------------------- */
   var burger = $('#burger');
-  var overlay = $('#overlay');
+  var menu = $('#menu');
   function setMenu(open) {
     burger.setAttribute('aria-expanded', String(open));
-    overlay.hidden = !open;
+    menu.hidden = !open;
     document.body.style.overflow = open ? 'hidden' : '';
     burger.querySelector('.sr-only').textContent = open ? 'Fermer le menu' : 'Ouvrir le menu';
-    if (open) { var f = overlay.querySelector('a'); if (f) f.focus(); }
+    if (open) { var f = menu.querySelector('a'); if (f) f.focus(); }
   }
-  if (burger && overlay) {
-    burger.addEventListener('click', function () { setMenu(overlay.hidden); });
-    overlay.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  if (burger && menu) {
+    burger.addEventListener('click', function () { setMenu(menu.hidden); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !overlay.hidden) { setMenu(false); burger.focus(); }
+      if (e.key === 'Escape' && !menu.hidden) { setMenu(false); burger.focus(); }
     });
   }
 
   /* ---------------------------------------------------------
-     7. Onglets piscines
+     8. Onglets piscines
      --------------------------------------------------------- */
   var tabs = $$('#poolTabs [role="tab"]');
-  tabs.forEach(function (tab, i) {
-    tab.addEventListener('click', function () { activate(i); });
-    tab.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-        e.preventDefault();
-        var n = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
-        activate(n); tabs[n].focus();
-      }
-    });
-  });
   function activate(n) {
     tabs.forEach(function (t, j) {
       var on = j === n;
@@ -183,9 +194,19 @@
       pane.classList.toggle('is-active', on);
     });
   }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { activate(i); });
+    tab.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        var n = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
+        activate(n); tabs[n].focus();
+      }
+    });
+  });
 
   /* ---------------------------------------------------------
-     8. Carte de la zone d'intervention
+     9. Carte de la zone
      --------------------------------------------------------- */
   var base = { x: 36.1, y: 40.3 };
   var coords = {
@@ -198,25 +219,21 @@
       var l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       l.setAttribute('x1', base.x); l.setAttribute('y1', base.y);
       l.setAttribute('x2', coords[key][0]); l.setAttribute('y2', coords[key][1]);
-      l.dataset.town = key;
+      l.setAttribute('data-town', key);
       linkG.appendChild(l);
     });
   }
   function highlight(town, on) {
-    $$('[data-town="' + town + '"]').forEach(function (el) {
-      el.classList.toggle(el.tagName === 'BUTTON' ? 'is-on' : 'is-on', on);
-    });
-    var line = linkG && linkG.querySelector('line[data-town="' + town + '"]');
-    if (line) line.classList.toggle('is-on', on);
+    $$('[data-town="' + town + '"]').forEach(function (el) { el.classList.toggle('is-on', on); });
   }
   $$('#towns button, .map__pts .pt').forEach(function (el) {
-    var town = el.dataset.town;
+    var town = el.getAttribute('data-town');
     ['mouseenter', 'focus'].forEach(function (ev) { el.addEventListener(ev, function () { highlight(town, true); }); });
     ['mouseleave', 'blur'].forEach(function (ev) { el.addEventListener(ev, function () { highlight(town, false); }); });
   });
 
   /* ---------------------------------------------------------
-     9. Formulaire → e-mail pré-rempli
+     10. Formulaire → e-mail pré-rempli
      --------------------------------------------------------- */
   var form = $('#form');
   if (form) {
@@ -241,50 +258,36 @@
         '',
         d.get('message')
       ].join('\n');
-      var href = 'mailto:' + form.dataset.mailto +
+      note.textContent = 'Votre messagerie s\'ouvre avec la demande pré-remplie…';
+      window.location.href = 'mailto:' + form.dataset.mailto +
         '?subject=' + encodeURIComponent('Demande de devis — ' + sujets) +
         '&body=' + encodeURIComponent(body);
-      note.textContent = 'Votre messagerie s\'ouvre avec la demande pré-remplie…';
-      window.location.href = href;
     });
   }
 
   /* ---------------------------------------------------------
-     10. Curseur & boutons magnétiques
+     11. Boutons magnétiques
      --------------------------------------------------------- */
   if (fine && !reduced) {
-    var dot = $('.cursor__dot'), ring = $('.cursor__ring');
-    var mx = -100, my = -100, rx = -100, ry = -100;
-    window.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
-    (function loop() {
-      rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
-      dot.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
-      ring.style.transform = 'translate3d(' + rx + 'px,' + ry + 'px,0)';
-      requestAnimationFrame(loop);
-    })();
-    document.addEventListener('mouseover', function (e) {
-      document.body.classList.toggle('is-hot', !!e.target.closest('a, button, input, textarea, label'));
-    });
-
     $$('.magnetic').forEach(function (el) {
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
         var dx = (e.clientX - (r.left + r.width / 2)) / r.width;
         var dy = (e.clientY - (r.top + r.height / 2)) / r.height;
-        el.style.transform = 'translate(' + (dx * 12).toFixed(2) + 'px,' + (dy * 8).toFixed(2) + 'px)';
+        el.style.transform = 'translate(' + (dx * 10).toFixed(2) + 'px,' + (dy * 6).toFixed(2) + 'px)';
       });
       el.addEventListener('mouseleave', function () { el.style.transform = ''; });
     });
   }
 
   /* ---------------------------------------------------------
-     11. Fonds animés : relief (hero) & caustiques (piscines)
+     12. Canvas : lumière filtrée par le feuillage & reflets d'eau
      --------------------------------------------------------- */
   function setupCanvas(cv) {
     var ctx = cv.getContext('2d');
-    var w = 0, h = 0, dpr = 1;
+    var w = 0, h = 0;
     function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
       var r = cv.getBoundingClientRect();
       w = Math.max(1, r.width); h = Math.max(1, r.height);
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
@@ -292,122 +295,102 @@
     }
     resize();
     window.addEventListener('resize', resize);
-    return { ctx: ctx, resize: resize, size: function () { return { w: w, h: h }; } };
+    return { ctx: ctx, size: function () { return { w: w, h: h }; } };
   }
 
-  function tone(el) {
-    var cs = getComputedStyle(el);
-    return {
-      bg: cs.getPropertyValue('--bg').trim() || '#08120c',
-      accent: cs.getPropertyValue('--accent').trim() || '#c6f24e'
-    };
-  }
+  /* --- taches de soleil à travers les feuilles --- */
+  var dapple = $('#dapple');
+  if (dapple) {
+    var D = setupCanvas(dapple);
+    var visible = true;
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(dapple);
 
-  /* --- relief topographique du hero --- */
-  var terrain = $('#terrain');
-  if (terrain) {
-    var T = setupCanvas(terrain);
-    var col = tone(terrain);
-    window.addEventListener('tonechange', function () { col = tone(terrain); });
-    var pointer = { x: 0.5, y: -1.2, tx: 0.5, ty: -1.2 };
+    var spots = [];
+    for (var i = 0; i < 16; i++) {
+      spots.push({
+        x: Math.random(), y: Math.random() * 0.9,
+        r: 0.06 + Math.random() * 0.16,
+        sx: (Math.random() - 0.5) * 0.9,
+        sy: (Math.random() - 0.5) * 0.5,
+        ph: Math.random() * 6.28
+      });
+    }
+    var pointer = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
     if (fine) {
-      terrain.parentElement.addEventListener('mousemove', function (e) {
-        var r = terrain.getBoundingClientRect();
+      dapple.parentElement.addEventListener('mousemove', function (e) {
+        var r = dapple.getBoundingClientRect();
         pointer.tx = (e.clientX - r.left) / r.width;
         pointer.ty = (e.clientY - r.top) / r.height;
       }, { passive: true });
     }
 
     var t = 0;
-    var visible = true;
-    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(terrain);
-
-    function drawTerrain() {
-      requestAnimationFrame(drawTerrain);
+    (function drawDapple() {
+      requestAnimationFrame(drawDapple);
       if (!visible) return;
-      var s = T.size(), ctx = T.ctx, w = s.w, h = s.h;
-      var small = w < 760;
-      var lines = small ? 22 : 32;
-      var step = small ? 14 : 9;
-      t += reduced ? 0 : 0.0045;
-      pointer.x += (pointer.tx - pointer.x) * 0.05;
-      pointer.y += (pointer.ty - pointer.y) * 0.05;
+      var s = D.size(), ctx = D.ctx, w = s.w, h = s.h;
+      t += reduced ? 0 : 0.0022;
+      pointer.x += (pointer.tx - pointer.x) * 0.03;
+      pointer.y += (pointer.ty - pointer.y) * 0.03;
 
       ctx.clearRect(0, 0, w, h);
-      var top = h * 0.22, span = h * 0.88;
+      var px = (pointer.x - 0.5) * 0.06;
+      var py = (pointer.y - 0.5) * 0.04;
 
-      for (var i = 0; i < lines; i++) {
-        var f = i / (lines - 1);
-        var baseY = top + f * span;
-        var amp = (h * 0.22) * Math.pow(f + 0.08, 2.1) + 3;
+      spots.forEach(function (sp) {
+        var cx = (sp.x + Math.sin(t * sp.sx + sp.ph) * 0.05 + px) * w;
+        var cy = (sp.y + Math.cos(t * sp.sy + sp.ph) * 0.035 + py) * h;
+        var rad = sp.r * Math.min(w, h) * (1 + Math.sin(t * 1.6 + sp.ph) * 0.12);
+        var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+        g.addColorStop(0, 'rgba(255, 246, 208, 0.5)');
+        g.addColorStop(0.55, 'rgba(255, 240, 190, 0.14)');
+        g.addColorStop(1, 'rgba(255, 240, 190, 0)');
+        ctx.fillStyle = g;
         ctx.beginPath();
-        for (var x = 0; x <= w + step; x += step) {
-          var u = x / w;
-          var y = baseY
-            + amp * Math.sin(u * 5.2 + t * 1.6 + f * 3.1)
-            + amp * 0.55 * Math.sin(u * 11.3 - t * 1.1 + f * 5.4)
-            + amp * 0.3 * Math.sin(u * 21.7 + t * 0.7);
-          // relief creusé/soulevé sous le curseur
-          var dx = u - pointer.x, dy = (baseY / h) - pointer.y;
-          y -= Math.exp(-(dx * dx) / 0.012 - (dy * dy) / 0.05) * h * 0.075 * (0.35 + f);
-          if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-        }
-        ctx.lineTo(w + step, h + 10);
-        ctx.lineTo(0, h + 10);
-        ctx.closePath();
-        ctx.fillStyle = col.bg;
+        ctx.arc(cx, cy, rad, 0, 6.2832);
         ctx.fill();
-        ctx.strokeStyle = col.accent;
-        ctx.globalAlpha = 0.12 + f * 0.68;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-      }
-    }
-    drawTerrain();
+      });
+    })();
   }
 
-  /* --- caustiques de la section piscines --- */
+  /* --- reflets doux sur l'eau du bassin --- */
   var water = $('#water');
   if (water) {
     var W = setupCanvas(water);
-    var wcol = tone(water);
     var wt = 0, wvis = false;
     new IntersectionObserver(function (es) { wvis = es[0].isIntersecting; }).observe(water);
 
-    function drawWater() {
+    (function drawWater() {
       requestAnimationFrame(drawWater);
       if (!wvis) return;
       var s = W.size(), ctx = W.ctx, w = s.w, h = s.h;
-      wt += reduced ? 0 : 0.006;
+      wt += reduced ? 0 : 0.004;
       ctx.clearRect(0, 0, w, h);
 
       var g = ctx.createLinearGradient(0, 0, 0, h);
-      g.addColorStop(0, wcol.bg);
-      g.addColorStop(1, '#06222a');
+      g.addColorStop(0, '#123037');
+      g.addColorStop(0.55, '#16414a');
+      g.addColorStop(1, '#0f2a31');
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
 
       ctx.globalCompositeOperation = 'lighter';
-      ctx.strokeStyle = wcol.accent;
-      ctx.lineWidth = 1.1;
-      var rows = h < 700 ? 22 : 34;
-      for (var i = 0; i < rows; i++) {
-        var f = i / rows;
-        ctx.globalAlpha = 0.035 + 0.05 * Math.abs(Math.sin(f * 6 + wt * 2));
+      var bands = h < 700 ? 12 : 18;
+      for (var i = 0; i < bands; i++) {
+        var f = i / bands;
         ctx.beginPath();
-        for (var x = 0; x <= w + 16; x += 16) {
+        ctx.lineWidth = 6 + 10 * Math.abs(Math.sin(f * 3 + wt));
+        ctx.strokeStyle = 'rgba(150, 214, 205, ' + (0.012 + 0.02 * Math.abs(Math.sin(f * 5 + wt * 1.4))) + ')';
+        for (var x = 0; x <= w + 24; x += 24) {
           var u = x / w;
           var y = f * h
-            + Math.sin(u * 7 + wt * 3 + f * 9) * (h * 0.028)
-            + Math.sin(u * 15 - wt * 2.2 + f * 4) * (h * 0.014);
+            + Math.sin(u * 5 + wt * 2.2 + f * 7) * (h * 0.032)
+            + Math.sin(u * 11 - wt * 1.6 + f * 3) * (h * 0.016);
           if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
         }
         ctx.stroke();
       }
-      ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
-    }
-    drawWater();
+    })();
   }
 })();
