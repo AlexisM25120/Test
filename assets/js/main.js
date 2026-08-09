@@ -6,19 +6,32 @@
   'use strict';
 
   /* ---------------------------------------------------------
-     Réalisations : liste des photos de la galerie.
-     Déposer les fichiers dans assets/img/realisations/ puis
-     ajuster les lignes ci-dessous. Une entrée dont l'image est
-     absente disparaît d'elle-même ; si aucune n'existe, toute
-     la section reste masquée.
+     Réalisations : photos de la galerie.
+
+     Les noms ci-dessous sont ceux du dossier Drive, tels quels :
+     il suffit de déposer les fichiers dans assets/img/realisations/
+     sans les renommer. L'ordre de cette liste est l'ordre d'affichage,
+     et la grille alterne les formats toute seule.
+
+     `legende` : laisser vide tant que la légende n'est pas écrite —
+     aucun texte ne s'affiche alors par-dessus la photo. Une entrée
+     dont le fichier est absent disparaît sans laisser de trou ; si
+     aucune n'est trouvée, la section entière reste masquée.
      --------------------------------------------------------- */
+  var DOSSIER = 'assets/img/realisations/';
   var REALISATIONS = [
-    { src: 'assets/img/realisations/01.jpg', legende: 'Terrasse en bois et plage de piscine' },
-    { src: 'assets/img/realisations/02.jpg', legende: 'Massif fleuri en bordure de pelouse' },
-    { src: 'assets/img/realisations/03.jpg', legende: 'Pavage et murets en pierre' },
-    { src: 'assets/img/realisations/04.jpg', legende: 'Bassin bois intégré au talus' },
-    { src: 'assets/img/realisations/05.jpg', legende: 'Chalet de jardin en bois' },
-    { src: 'assets/img/realisations/06.jpg', legende: 'Haie taillée et allée d\'accès' }
+    { fichier: 'com_sitesv_.jpg',      legende: '' },
+    { fichier: 'com_sitesv_ (1).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (2).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (3).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (4).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (5).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (6).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (7).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (8).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (9).jpg',  legende: '' },
+    { fichier: 'com_sitesv_ (10).jpg', legende: '' },
+    { fichier: 'com_sitesv_ (11).jpg', legende: '' }
   ];
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -43,35 +56,48 @@
   var grid = $('#galleryGrid');
   var gallerySection = $('#realisations');
   if (grid && gallerySection) {
-    var pending = REALISATIONS.length;
-    var kept = 0;
-
-    var settle = function () {
-      if (--pending > 0) return;
-      if (kept > 0) {
-        gallerySection.hidden = false;
-      } else {
-        ['.nav__links a[href="#realisations"]', '.menu__nav a[href="#realisations"]']
-          .forEach(function (sel) { var l = $(sel); if (l) l.hidden = true; });
-      }
-    };
-
-    REALISATIONS.forEach(function (item) {
+    // Toutes les cases sont posées d'avance : l'ordre de REALISATIONS est
+    // conservé, et celles dont le fichier manque se retirent d'elles-mêmes.
+    var cases = REALISATIONS.map(function (item) {
       var fig = document.createElement('figure');
       fig.className = 'shot';
       var img = document.createElement('img');
-      img.alt = item.legende;
-      var cap = document.createElement('figcaption');
-      cap.textContent = item.legende;
+      img.alt = item.legende || 'Réalisation de Montbellet Paysage';
       fig.appendChild(img);
-      fig.appendChild(cap);
-      // Ordre conservé : on pose toutes les cases, on retire celles qui manquent.
+      if (item.legende) {
+        var cap = document.createElement('figcaption');
+        cap.textContent = item.legende;
+        fig.appendChild(cap);
+      }
       grid.appendChild(fig);
-
-      img.addEventListener('load', function () { kept++; settle(); });
-      img.addEventListener('error', function () { fig.remove(); settle(); });
-      img.src = item.src;
+      return { fig: fig, img: img, url: encodeURI(DOSSIER + item.fichier) };
     });
+
+    var dropGallery = function () {
+      gallerySection.remove();
+      ['.nav__links a[href="#realisations"]', '.menu__nav a[href="#realisations"]']
+        .forEach(function (sel) { var l = $(sel); if (l) l.remove(); });
+    };
+
+    // On sonde les photos une par une jusqu'à la première qui répond : tant que
+    // le dossier est vide, cela ne télécharge rien. Dès qu'une répond, la
+    // section s'affiche et les suivantes passent en chargement paresseux.
+    var i = 0;
+    (function probe() {
+      if (i >= cases.length) { dropGallery(); return; }
+      var c = cases[i++];
+      c.img.onload = function () {
+        gallerySection.hidden = false;
+        cases.slice(i).forEach(function (rest) {
+          rest.img.loading = 'lazy';
+          rest.img.onerror = function () { rest.fig.remove(); };
+          rest.img.src = rest.url;
+        });
+        i = cases.length;
+      };
+      c.img.onerror = function () { c.fig.remove(); probe(); };
+      c.img.src = c.url;
+    })();
   }
 
   /* ---------------------------------------------------------
