@@ -20,18 +20,14 @@
      --------------------------------------------------------- */
   var DOSSIER = 'assets/img/realisations/';
   var REALISATIONS = [
-    { fichier: 'com_sitesv_.jpg',      legende: '' },
-    { fichier: 'com_sitesv_ (1).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (2).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (3).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (4).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (5).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (6).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (7).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (8).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (9).jpg',  legende: '' },
-    { fichier: 'com_sitesv_ (10).jpg', legende: '' },
-    { fichier: 'com_sitesv_ (11).jpg', legende: '' }
+    { fichier: '01.jpg', legende: 'Piscine et sa plage, intégrées au jardin existant' },
+    { fichier: '02.jpg', legende: 'Portail et clôture sur piliers de pierre' },
+    { fichier: '03.jpg', legende: 'Allée en dalles béton et joints de gravier' },
+    { fichier: '04.jpg', legende: 'Pose d’un volet roulant de piscine' },
+    { fichier: '05.jpg', legende: 'Terrasse bois en cours autour du bassin' },
+    { fichier: '06.jpg', legende: 'Pas japonais posés dans la pelouse' },
+    { fichier: '07.jpg', legende: 'Abri de jardin en pierre et bois' },
+    { fichier: '08.jpg', legende: 'Étude en 3D du projet avant travaux' }
   ];
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
