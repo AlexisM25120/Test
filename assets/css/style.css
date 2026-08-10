@@ -5,10 +5,22 @@
    pour donner du rythme — jamais en gris technique.
    ============================================================ */
 
+/* ---------- polices auto-hébergées ----------
+   Sous-ensemblées au jeu de caractères français. Aucune requête vers un
+   service tiers : ni latence de CDN, ni adresse IP transmise à Google. */
+@font-face { font-family:'Garamond'; src:url('../fonts/garamond-normal.woff2') format('woff2-variations');
+             font-weight:400 600; font-style:normal; font-display:swap; }
+@font-face { font-family:'Garamond'; src:url('../fonts/garamond-italic.woff2') format('woff2-variations');
+             font-weight:400 600; font-style:italic; font-display:swap; }
+@font-face { font-family:'Karla'; src:url('../fonts/karla-400.woff2') format('woff2');
+             font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:'Karla'; src:url('../fonts/karla-600.woff2') format('woff2');
+             font-weight:600; font-style:normal; font-display:swap; }
+
 /* ---------- tokens ---------- */
 :root {
-  --serif: "EB Garamond", Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;
-  --sans: "Karla", ui-sans-serif, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --serif: 'Garamond', Georgia, "Iowan Old Style", "Palatino Linotype", ui-serif, serif;
+  --sans: 'Karla', ui-sans-serif, "Segoe UI", system-ui, -apple-system, sans-serif;
 
   --pad: clamp(1.25rem, 5vw, 6rem);
   --maxw: 92rem;
@@ -19,15 +31,18 @@
 
 /* Palette par défaut = chaux (au cas où data-tone manquerait) */
 :root,
-[data-tone="chaux"]   { --bg:#f5f1e6; --fg:#1a2a1e; --accent:#2f5233; --accent-ink:#f7f4ea; --warm:#b45b34; --shade:#e6dfcd; }
-[data-tone="pierre"]  { --bg:#ebe5d5; --fg:#232f26; --accent:#46603a; --accent-ink:#f4f1e7; --warm:#a8532e; --shade:#ddd5c0; }
-[data-tone="bois"]    { --bg:#f0e4d1; --fg:#3a2a1b; --accent:#a8532e; --accent-ink:#f6efe3; --warm:#a8532e; --shade:#e2d1b6; }
+[data-tone="chaux"]   { --bg:#f5f1e6; --fg:#1a2a1e; --accent:#2f5233; --accent-ink:#f7f4ea; --warm:#9c4a25; --shade:#e6dfcd; }
+[data-tone="pierre"]  { --bg:#ebe5d5; --fg:#232f26; --accent:#46603a; --accent-ink:#f4f1e7; --warm:#9c4a25; --shade:#ddd5c0; }
+[data-tone="bois"]    { --bg:#f0e4d1; --fg:#3a2a1b; --accent:#9c4a25; --accent-ink:#f6efe3; --warm:#9c4a25; --shade:#e2d1b6; }
 [data-tone="feuille"] { --bg:#1c3222; --fg:#ece8da; --accent:#c6d9a2; --accent-ink:#1c3222; --warm:#e0a06a; --shade:#24402c; }
 [data-tone="eau"]     { --bg:#123037; --fg:#e2f0ee; --accent:#8ccfc7; --accent-ink:#123037; --warm:#e0a06a; --shade:#194149; }
 
 :root, [data-tone] {
-  --dim: color-mix(in oklab, var(--fg) 68%, transparent);
-  --faint: color-mix(in oklab, var(--fg) 42%, transparent);
+  /* Ces deux jetons portent du TEXTE : ils doivent tenir le ratio AA de 4,5:1
+     sur le fond le plus clair de la palette (pierre #ebe5d5), pas seulement
+     sur le fond chaux. Calibrés sur ce pire cas. Voir ERRORS_LOG E-009/E-010. */
+  --dim: color-mix(in oklab, var(--fg) 86%, transparent);
+  --faint: color-mix(in oklab, var(--fg) 76%, transparent);
   --line: color-mix(in oklab, var(--fg) 20%, transparent);
   --hair: color-mix(in oklab, var(--fg) 11%, transparent);
   --sheet: color-mix(in oklab, var(--fg) 5%, transparent);
@@ -607,16 +622,18 @@ body.scrolled .nav { border-bottom-color: var(--hair); }
 /* ============================================================
    ANIMATIONS D'ENTRÉE
    ============================================================ */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
-.reveal.in { opacity: 1; transform: none; }
+/* Amélioration progressive : sans JavaScript, la classe .js n'est jamais
+   posée et rien n'est masqué. Le contenu reste intégralement lisible. */
+.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
 
 [data-split] .w, [data-split-words] .w { display: inline-block; overflow: hidden; vertical-align: bottom; }
-[data-split] .w > i, [data-split-words] .w > i {
+.js [data-split] .w > i, .js [data-split-words] .w > i {
   display: inline-block; font-style: inherit;
   transform: translateY(105%); transition: transform .85s var(--ease);
   transition-delay: calc(var(--i) * 32ms);
 }
-[data-split].in .w > i, [data-split-words].in .w > i { transform: none; }
+.js [data-split].in .w > i, .js [data-split-words].in .w > i { transform: none; }
 
 /* ============================================================
    RESPONSIVE
@@ -665,6 +682,65 @@ body.scrolled .nav { border-bottom-color: var(--hair); }
     transition-duration: .001ms !important;
   }
   .reveal { opacity: 1; transform: none; }
-  [data-split] .w > i, [data-split-words] .w > i { transform: none; }
+  .js [data-split] .w > i, .js [data-split-words] .w > i { transform: none; }
   .hero__photo { animation: none; }
+}
+
+/* ============================================================
+   PAGES INTERNES
+   ============================================================ */
+.wrap-m { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); }
+
+/* utilitaires de composition — peu nombreux, pas de style en ligne */
+.u-narrow { max-width: 22ch; }
+.u-mt-s { margin-top: 1rem; }
+.u-mt-l { margin-top: clamp(2rem, 4vw, 3rem); }
+
+.crumbs { padding: 1.25rem var(--pad) 0; max-width: var(--maxw); margin-inline: auto; }
+.crumbs ol { display: flex; flex-wrap: wrap; gap: .5rem; font-size: .85rem; color: var(--faint); }
+.crumbs a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.crumbs a:hover { color: var(--warm); }
+
+.page-head { background: var(--bg); color: var(--fg); padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 4vw, 3rem); }
+.page-head .lede { max-width: 60ch; }
+
+.split-photo { background: var(--bg); color: var(--fg); padding-block: clamp(2rem, 5vw, 4rem) clamp(4rem, 9vw, 7rem); }
+.split-photo .split { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+
+.section-metiers { background: var(--bg); color: var(--fg); padding-block: clamp(3.5rem, 8vw, 7rem); }
+.section-metiers .split { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+
+/* cadre photo des pages internes : hauteur libre, pas la contrainte du panneau */
+.frame--page { position: sticky; top: calc(var(--nav-h) + 1.5rem); height: auto; width: 100%; aspect-ratio: 4 / 5; justify-self: stretch; }
+
+/* grille des métiers, sur l'accueil */
+.metiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: clamp(1rem, 2.2vw, 1.75rem); }
+.metier a {
+  display: flex; flex-direction: column; gap: .7rem; height: 100%;
+  padding-bottom: 1.2rem; border-bottom: 1px solid var(--line);
+  transition: border-color .3s;
+}
+.metier a:hover { border-color: var(--warm); }
+.metier figure { margin: 0 0 .5rem; overflow: hidden; border-radius: 3px 26px 3px 26px; aspect-ratio: 4 / 3; background: var(--shade); }
+.metier img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease); }
+.metier a:hover img { transform: scale(1.05); }
+.metier p { margin: 0; color: var(--dim); font-size: .95rem; }
+.metier__go { margin-top: auto; padding-top: .5rem; display: inline-flex; align-items: center; gap: .45rem; font-size: .88rem; font-weight: 600; color: var(--warm); }
+.metier__go svg { width: 1em; height: 1em; transition: transform .3s var(--ease); }
+.metier a:hover .metier__go svg { transform: translateX(3px); }
+
+/* trois cartes de texte */
+.cards-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: clamp(1rem, 2vw, 1.5rem); }
+.card-s { padding: clamp(1.3rem, 2.4vw, 1.9rem); border: 1px solid var(--line); border-radius: 3px 26px 3px 26px; background: var(--sheet); }
+.card-s p { margin: .6rem 0 0; color: var(--dim); font-size: .95rem; }
+
+/* bandeau d'appel en pied de page interne */
+.cta-duo { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--pad); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: center; }
+.cta-duo__actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+
+.hint { font-size: .84rem; color: var(--faint); margin: -.4rem 0 0; }
+
+@media (max-width: 60rem) {
+  .split-photo .split, .section-metiers .split, .cta-duo { grid-template-columns: 1fr; }
+  .frame--page { position: static; aspect-ratio: 4 / 3; }
 }

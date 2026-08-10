@@ -5,31 +5,6 @@
 (function () {
   'use strict';
 
-  /* ---------------------------------------------------------
-     Réalisations : photos de la galerie.
-
-     Les noms ci-dessous sont ceux du dossier Drive, tels quels :
-     il suffit de déposer les fichiers dans assets/img/realisations/
-     sans les renommer. L'ordre de cette liste est l'ordre d'affichage,
-     et la grille alterne les formats toute seule.
-
-     `legende` : laisser vide tant que la légende n'est pas écrite —
-     aucun texte ne s'affiche alors par-dessus la photo. Une entrée
-     dont le fichier est absent disparaît sans laisser de trou ; si
-     aucune n'est trouvée, la section entière reste masquée.
-     --------------------------------------------------------- */
-  var DOSSIER = 'assets/img/realisations/';
-  var REALISATIONS = [
-    { fichier: '01.jpg', legende: 'Piscine et sa plage, intégrées au jardin existant' },
-    { fichier: '02.jpg', legende: 'Portail et clôture sur piliers de pierre' },
-    { fichier: '03.jpg', legende: 'Allée en dalles béton et joints de gravier' },
-    { fichier: '04.jpg', legende: 'Pose d’un volet roulant de piscine' },
-    { fichier: '05.jpg', legende: 'Terrasse bois en cours autour du bassin' },
-    { fichier: '06.jpg', legende: 'Pas japonais posés dans la pelouse' },
-    { fichier: '07.jpg', legende: 'Abri de jardin en pierre et bois' },
-    { fichier: '08.jpg', legende: 'Étude en 3D du projet avant travaux' }
-  ];
-
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var $ = function (s, c) { return (c || document).querySelector(s); };
@@ -48,52 +23,26 @@
 
   /* ---------------------------------------------------------
      2. Galerie des réalisations
+     Les figures sont écrites dans le HTML : la galerie s'affiche sans
+     JavaScript. Ce script ne fait qu'entretenir la grille — il retire
+     une case dont le fichier manque, et la section entière si aucune
+     photo ne répond.
      --------------------------------------------------------- */
   var grid = $('#galleryGrid');
   var gallerySection = $('#realisations');
   if (grid && gallerySection) {
-    // Toutes les cases sont posées d'avance : l'ordre de REALISATIONS est
-    // conservé, et celles dont le fichier manque se retirent d'elles-mêmes.
-    var cases = REALISATIONS.map(function (item) {
-      var fig = document.createElement('figure');
-      fig.className = 'shot';
-      var img = document.createElement('img');
-      img.alt = item.legende || 'Réalisation de Montbellet Paysage';
-      fig.appendChild(img);
-      if (item.legende) {
-        var cap = document.createElement('figcaption');
-        cap.textContent = item.legende;
-        fig.appendChild(cap);
-      }
-      grid.appendChild(fig);
-      return { fig: fig, img: img, url: encodeURI(DOSSIER + item.fichier) };
-    });
-
-    var dropGallery = function () {
-      gallerySection.remove();
-      ['.nav__links a[href="#realisations"]', '.menu__nav a[href="#realisations"]']
-        .forEach(function (sel) { var l = $(sel); if (l) l.remove(); });
-    };
-
-    // On sonde les photos une par une jusqu'à la première qui répond : tant que
-    // le dossier est vide, cela ne télécharge rien. Dès qu'une répond, la
-    // section s'affiche et les suivantes passent en chargement paresseux.
-    var i = 0;
-    (function probe() {
-      if (i >= cases.length) { dropGallery(); return; }
-      var c = cases[i++];
-      c.img.onload = function () {
-        gallerySection.hidden = false;
-        cases.slice(i).forEach(function (rest) {
-          rest.img.loading = 'lazy';
-          rest.img.onerror = function () { rest.fig.remove(); };
-          rest.img.src = rest.url;
-        });
-        i = cases.length;
+    var shots = $$('.shot', grid);
+    var restants = shots.length;
+    shots.forEach(function (fig) {
+      var img = $('img', fig);
+      if (!img) return;
+      var perdue = function () {
+        fig.remove();
+        if (--restants === 0) gallerySection.remove();
       };
-      c.img.onerror = function () { c.fig.remove(); probe(); };
-      c.img.src = c.url;
-    })();
+      img.addEventListener('error', perdue);
+      if (img.complete && img.naturalWidth === 0) perdue();
+    });
   }
 
   /* ---------------------------------------------------------
@@ -305,11 +254,14 @@
   /* ---------------------------------------------------------
      12. Canvas : lumière filtrée par le feuillage & reflets d'eau
      --------------------------------------------------------- */
-  function setupCanvas(cv) {
+  function setupCanvas(cv, echelle) {
     var ctx = cv.getContext('2d');
     var w = 0, h = 0;
     function resize() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      // Ces canvas ne dessinent que des dégradés très flous : les rendre à
+      // pleine résolution coûte cher pour un résultat identique à l'œil.
+      // On peint petit, le CSS étire — le coût de remplissage chute d'autant.
+      var dpr = echelle || Math.min(window.devicePixelRatio || 1, 2);
       var r = cv.getBoundingClientRect();
       w = Math.max(1, r.width); h = Math.max(1, r.height);
       cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
@@ -323,12 +275,13 @@
   /* --- taches de soleil à travers les feuilles --- */
   var dapple = $('#dapple');
   if (dapple) {
-    var D = setupCanvas(dapple);
+    var D = setupCanvas(dapple, 0.4);
     var visible = true;
     new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(dapple);
 
     var spots = [];
-    for (var i = 0; i < 16; i++) {
+    var nbSpots = window.innerWidth < 760 ? 8 : 14;
+    for (var i = 0; i < nbSpots; i++) {
       spots.push({
         x: Math.random(), y: Math.random() * 0.9,
         r: 0.06 + Math.random() * 0.16,
@@ -346,10 +299,13 @@
       }, { passive: true });
     }
 
-    var t = 0;
-    (function drawDapple() {
+    var t = 0, dernier = 0;
+    (function drawDapple(ts) {
       requestAnimationFrame(drawDapple);
       if (!visible) return;
+      // ~20 images par seconde suffisent pour une dérive de cette lenteur
+      if (ts - dernier < 50) return;
+      dernier = ts || 0;
       var s = D.size(), ctx = D.ctx, w = s.w, h = s.h;
       t += reduced ? 0 : 0.0022;
       pointer.x += (pointer.tx - pointer.x) * 0.03;
@@ -378,7 +334,7 @@
   /* --- reflets doux sur l'eau du bassin --- */
   var water = $('#water');
   if (water) {
-    var W = setupCanvas(water);
+    var W = setupCanvas(water, 0.45);
     var wt = 0, wvis = false;
     new IntersectionObserver(function (es) { wvis = es[0].isIntersecting; }).observe(water);
 
